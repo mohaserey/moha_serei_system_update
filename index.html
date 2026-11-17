@@ -8,9 +8,122 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Kantumruy+Pro:wght@300;400;500;600;700&family=Moul&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ================= STYLE.CSS ================= */
+    :root {
+      --msn-navy: #070d19;
+      --msn-slate: #0f172a;
+      --msn-card: #131d33;
+      --msn-border: rgba(212, 175, 55, 0.22);
+      --msn-gold: #d4af37;
+      --msn-gold-light: #f3d06b;
+      --msn-emerald: #10b981;
+      --msn-cyan: #06b6d4;
+    }
+
+    body {
+      font-family: 'Kantumruy Pro', 'Inter', sans-serif;
+      background-color: var(--msn-navy);
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+
+    .font-moul {
+      font-family: 'Moul', serif;
+    }
+
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hero-bg {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.14), transparent 42%),
+        radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.12), transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.1), transparent 45%),
+        linear-gradient(180deg, #060b16 0%, #0b1324 60%, #070d19 100%);
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fde68a 0%, #d4af37 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .msn-glass {
+      background: rgba(19, 29, 51, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.55);
+    }
+
+    .msn-glass-hover {
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .msn-glass-hover:hover {
+      border-color: rgba(212, 175, 55, 0.55);
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px -12px rgba(212, 175, 55, 0.16);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: #1e293b;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fde68a, #d4af37);
+      border: 2px solid #0f172a;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.65);
+      transition: transform 0.15s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    .tab-btn-active {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(245, 158, 11, 0.15));
+      border-color: #d4af37 !important;
+      color: #fde68a !important;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070d19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27354f;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d4af37;
+    }
+    /* ================= END STYLE.CSS ================= */
+  </style>
 </head>
 <body class="antialiased selection:bg-amber-400/30 selection:text-amber-200">
+
+<!-- ================= INDEX.HTML ================= -->
+
 <!-- Sticky Top Navigation -->
 <header class="sticky top-0 z-40 border-b border-amber-500/20 bg-[#070d19]/90 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,17 +148,19 @@
 
       <!-- Desktop Anchor Links -->
       <nav class="hidden xl:flex items-center gap-5 text-xs font-medium text-slate-300">
-        <a href="#constitution" class="hover:text-amber-300 transition" data-i18n="nav_charter">ធម្មនុញ្ញ &amp; រដ្ឋធម្មនុញ្ញ</a>
-        <a href="#ues-simulator" class="hover:text-amber-300 transition" data-i18n="nav_ues">ម៉ាស៊ីនគណនា UES &amp; HCV</a>
-        <a href="#coin-engine" class="hover:text-amber-300 transition" data-i18n="nav_coin">MSN Coin &amp; ភាគលាភ</a>
+        <a href="#constitution" class="hover:text-amber-300 transition" data-i18n="nav_charter">ធម្មនុញ្ញ & រដ្ឋធម្មនុញ្ញ</a>
+        <a href="#ues-simulator" class="hover:text-amber-300 transition" data-i18n="nav_ues">ម៉ាស៊ីនគណនា UES & HCV</a>
+        <a href="#coin-engine" class="hover:text-amber-300 transition" data-i18n="nav_coin">MSN Coin & ភាគលាភ</a>
         <a href="#architecture" class="hover:text-amber-300 transition" data-i18n="nav_arch">ស្ថាបត្យកម្ម ៨ ស្រទាប់</a>
-        <a href="#governance" class="hover:text-amber-300 transition" data-i18n="nav_gov">អភិបាលកិច្ច &amp; សវនកម្ម</a>
+        <a href="#governance" class="hover:text-amber-300 transition" data-i18n="nav_gov">អភិបាលកិច្ច & សវនកម្ម</a>
         <a href="#roadmap" class="hover:text-amber-300 transition" data-i18n="nav_roadmap">ផែនទី 2026–2052</a>
       </nav>
 
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 shrink-0">
         <!-- Language Switcher -->
         <button onclick="toggleLanguage()" id="langToggleBtn" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-md shadow-amber-500/20 transition cursor-pointer">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
           <span id="langBadgeText">English</span>
         </button>
       </div>
@@ -74,7 +189,9 @@
           <span class="gold-gradient-text" data-i18n="hero_title">Moha Serey Enterprise System Update (2026–2052)</span>
         </h1>
 
-        <p class="text-slate-300 text-base sm:text-lg leading-relaxed" data-i18n="hero_desc">ប្រព័ន្ធសេដ្ឋកិច្ចឌីជីថលផ្អែកលើការចូលរួម (Participation-Based Economic Ecosystem) ដែលបម្លែងរាល់សកម្មភាពរបស់មនុស្ស ធុរកិច្ច ចំណេះដឹង បណ្តាញ និងសង្គម ទៅជាតម្លៃសេដ្ឋកិច្ចពិតប្រាកដ ក្រោមអភិបាលកិច្ចស្ថាប័ន តម្លាភាព និងសវនកម្ម ១០០%។</p>
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed" data-i18n="hero_desc">
+          ប្រព័ន្ធសេដ្ឋកិច្ចឌីជីថលផ្អែកលើការចូលរួម (Participation-Based Economic Ecosystem) ដែលបម្លែងរាល់សកម្មភាពរបស់មនុស្ស ធុរកិច្ច ចំណេះដឹង បណ្តាញ និងសង្គម ទៅជាតម្លៃសេដ្ឋកិច្ចពិតប្រាកដ ក្រោមអភិបាលកិច្ចស្ថាប័ន តម្លាភាព និងសវនកម្ម ១០០%។
+        </p>
 
         <!-- 3 Core Constitutional Principles -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
@@ -96,8 +213,12 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-3 pt-2">
-          <a href="#ues-simulator" class="px-5 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 hover:from-amber-300 hover:to-amber-500 shadow-lg shadow-amber-500/20 transition" data-i18n="cta_simulator">សាកល្បងគណនា UES &amp; Human Capital</a>
-          <a href="#architecture" class="px-5 py-3 rounded-xl font-semibold text-sm bg-slate-800/90 hover:bg-slate-700 text-white border border-slate-600 transition" data-i18n="cta_blueprint">មើលស្ថាបត្យកម្ម ៨ ស្រទាប់ (MSN-EAB-001)</a>
+          <a href="#ues-simulator" class="px-5 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 hover:from-amber-300 hover:to-amber-500 shadow-lg shadow-amber-500/20 transition" data-i18n="cta_simulator">
+            សាកល្បងគណនា UES & Human Capital
+          </a>
+          <a href="#architecture" class="px-5 py-3 rounded-xl font-semibold text-sm bg-slate-800/90 hover:bg-slate-700 text-white border border-slate-600 transition" data-i18n="cta_blueprint">
+            មើលស្ថាបត្យកម្ម ៨ ស្រទាប់ (MSN-EAB-001)
+          </a>
         </div>
       </div>
 
@@ -154,7 +275,9 @@
     <div class="max-w-3xl mb-10">
       <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-amber-400">MSN-ECO-001 • MSN-HCM-001 • MSN-RANK-001</span>
       <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="sim_heading">ម៉ាស៊ីនគណនាតម្លៃសេដ្ឋកិច្ចសកល (UES) និងមូលធនមនុស្ស (HCV)</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="sim_sub">កែតម្រូវសកម្មភាពចូលរួមទាំង ៥ ប្រភេទខាងក្រោម ដើម្បីមើលការគណនាពិន្ទុស្វ័យប្រវត្តិ តំណែងដឹកនាំ (Career Rank) កម្រិតអត្ថប្រយោជន៍ និងចំណែកកម្មសិទ្ធិសេដ្ឋកិច្ចរបស់សមាជិក។</p>
+      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="sim_sub">
+        កែតម្រូវសកម្មភាពចូលរួមទាំង ៥ ប្រភេទខាងក្រោម ដើម្បីមើលការគណនាពិន្ទុស្វ័យប្រវត្តិ តំណែងដឹកនាំ (Career Rank) កម្រិតអត្ថប្រយោជន៍ និងចំណែកកម្មសិទ្ធិសេដ្ឋកិច្ចរបស់សមាជិក។
+      </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -165,9 +288,9 @@
           <div class="flex items-center justify-between mb-3">
             <h3 class="font-bold text-amber-300 text-sm sm:text-base flex items-center gap-2">
               <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center text-xs font-mono-code">F</span>
-              <span data-i18n="cat_fin">១. ហិរញ្ញធន &amp; ធនអាជីវកម្ម (Financial &amp; Business Activity)</span>
+              <span data-i18n="cat_fin">១. ហិរញ្ញធន & ធនអាជីវកម្ម (Financial & Business Activity)</span>
             </h3>
-            <span class="font-mono-code text-xs text-amber-300 font-bold" id="finPointsBadge">6,700 pts</span>
+            <span class="font-mono-code text-xs text-amber-300 font-bold" id="finPointsBadge">0 pts</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -187,14 +310,14 @@
             <div>
               <div class="flex justify-between text-xs mb-1">
                 <span class="text-slate-300" data-i18n="lbl_revenue">ការលក់/អាជីវកម្ម ($1 = 2 pts)</span>
-                <span class="font-mono-code text-white font-semibold">$<span id="val_revenue">1,200</span></span>
+                <span class="font-mono-code text-white font-semibold">$<span id="val_revenue">1200</span></span>
               </div>
               <input type="range" id="in_revenue" min="0" max="20000" step="100" value="1200" oninput="recalculateEcosystem()">
             </div>
             <div>
               <div class="flex justify-between text-xs mb-1">
                 <span class="text-slate-300" data-i18n="lbl_invest">ការវិនិយោគ ($1 = 3 pts)</span>
-                <span class="font-mono-code text-white font-semibold">$<span id="val_invest">1,000</span></span>
+                <span class="font-mono-code text-white font-semibold">$<span id="val_invest">1000</span></span>
               </div>
               <input type="range" id="in_invest" min="0" max="25000" step="100" value="1000" oninput="recalculateEcosystem()">
             </div>
@@ -206,9 +329,9 @@
           <div class="flex items-center justify-between mb-3">
             <h3 class="font-bold text-cyan-300 text-sm sm:text-base flex items-center gap-2">
               <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-xs font-mono-code">K</span>
-              <span data-i18n="cat_know">២. ធនចំណេះដឹង (Knowledge &amp; MSN Academy)</span>
+              <span data-i18n="cat_know">២. ធនចំណេះដឹង (Knowledge & MSN Academy)</span>
             </h3>
-            <span class="font-mono-code text-xs text-cyan-300 font-bold" id="knowPointsBadge">800 pts</span>
+            <span class="font-mono-code text-xs text-cyan-300 font-bold" id="knowPointsBadge">0 pts</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
@@ -240,9 +363,9 @@
           <div class="flex items-center justify-between mb-3">
             <h3 class="font-bold text-emerald-300 text-sm sm:text-base flex items-center gap-2">
               <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs font-mono-code">N+S</span>
-              <span data-i18n="cat_netsoc">៣. ធនបណ្តាញ &amp; ធនសង្គម (Network &amp; Social Capital)</span>
+              <span data-i18n="cat_netsoc">៣. ធនបណ្តាញ & ធនសង្គម (Network & Social Capital)</span>
             </h3>
-            <span class="font-mono-code text-xs text-emerald-300 font-bold" id="netSocPointsBadge">7,300 pts</span>
+            <span class="font-mono-code text-xs text-emerald-300 font-bold" id="netSocPointsBadge">0 pts</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -268,7 +391,7 @@
             </div>
             <div>
               <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_csr">ការងារស្ម័គ្រចិត្ត &amp; CSR (100pts)</span>
+                <span class="text-slate-300" data-i18n="lbl_csr">ការងារស្ម័គ្រចិត្ត & CSR (100pts)</span>
                 <span class="font-mono-code text-white font-semibold"><span id="val_csr">12</span></span>
               </div>
               <input type="range" id="in_csr" min="0" max="200" step="1" value="12" oninput="recalculateEcosystem()">
@@ -285,16 +408,18 @@
               <span class="text-[11px] font-mono-code text-amber-400">ECO-002 • DIGITAL ECONOMIC PASSPORT</span>
               <h3 class="text-lg font-bold text-white" data-i18n="passport_title">លិខិតឆ្លងដែនសេដ្ឋកិច្ចសមាជិក</h3>
             </div>
-            <span id="benefitTierBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/40">GOLD TIER</span>
+            <span id="benefitTierBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/40">
+              GOLD TIER
+            </span>
           </div>
 
           <!-- Big Score Display -->
           <div class="bg-[#080e1c] rounded-2xl p-5 border border-slate-800 text-center">
             <p class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="ues_total_lbl">ពិន្ទុសេដ្ឋកិច្ចសកល (Universal Economic Score)</p>
-            <p id="uesTotalDisplay" class="text-4xl sm:text-5xl font-extrabold gold-gradient-text font-mono-code my-2">14,800</p>
+            <p id="uesTotalDisplay" class="text-4xl sm:text-5xl font-extrabold gold-gradient-text font-mono-code my-2">0</p>
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
               <span data-i18n="rank_lbl">តំណែងស្វ័យប្រវត្តិ៖</span>
-              <span id="careerRankDisplay" class="font-bold">អ្នកសម្របសម្រួល (Coordinator)</span>
+              <span id="careerRankDisplay" class="font-bold">Coordinator</span>
             </div>
           </div>
 
@@ -305,7 +430,7 @@
               <span class="font-mono-code text-amber-300" id="nextRankTargetText">50,000 pts (Supervisor)</span>
             </div>
             <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="rankProgressBar" class="h-full bg-gradient-to-r from-amber-400 via-emerald-400 to-cyan-400 rounded-full transition-all duration-300" style="width: 12%;"></div>
+              <div id="rankProgressBar" class="h-full bg-gradient-to-r from-amber-400 via-emerald-400 to-cyan-400 rounded-full transition-all duration-300" style="width: 35%;"></div>
             </div>
           </div>
 
@@ -313,12 +438,12 @@
           <div class="grid grid-cols-2 gap-3">
             <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800">
               <p class="text-[11px] text-slate-400" data-i18n="hcv_lbl">តម្លៃមូលធនមនុស្ស (HCV)</p>
-              <p id="hcvScoreDisplay" class="text-xl font-bold text-cyan-300 font-mono-code mt-0.5">3,175</p>
+              <p id="hcvScoreDisplay" class="text-xl font-bold text-cyan-300 font-mono-code mt-0.5">0</p>
               <p class="text-[10px] text-slate-500">F25% B25% K20% N20% S10%</p>
             </div>
             <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800">
               <p class="text-[11px] text-slate-400" data-i18n="reward_share_lbl">ចំណែកភាគលាភប៉ាន់ស្មាន</p>
-              <p id="rewardShareDisplay" class="text-xl font-bold text-emerald-400 font-mono-code mt-0.5">$148.00</p>
+              <p id="rewardShareDisplay" class="text-xl font-bold text-emerald-400 font-mono-code mt-0.5">$0.00</p>
               <p class="text-[10px] text-slate-500" data-i18n="reward_pool_note">ពី Reward Pool $100,000</p>
             </div>
           </div>
@@ -326,7 +451,9 @@
           <!-- Unlocked Benefits List -->
           <div class="bg-[#0a1120] p-4 rounded-2xl border border-slate-800">
             <p class="text-xs font-semibold text-amber-300 mb-2" data-i18n="benefits_unlocked_lbl">សិទ្ធិ និងអត្ថប្រយោជន៍ដែលទទួលបាន (MSN-BEN-001):</p>
-            <ul id="unlockedBenefitsList" class="text-xs text-slate-300 space-y-1.5"><li class="flex items-center gap-2"><span class="text-emerald-400">✓</span><span>អត្ថប្រយោជន៍ Silver ទាំងអស់</span></li><li class="flex items-center gap-2"><span class="text-emerald-400">✓</span><span>សិទ្ធិចូលរួមគម្រោងវិនិយោគ</span></li><li class="flex items-center gap-2"><span class="text-emerald-400">✓</span><span>កម្មវិធីអភិវឌ្ឍភាពជាអ្នកដឹកនាំ</span></li></ul>
+            <ul id="unlockedBenefitsList" class="text-xs text-slate-300 space-y-1.5">
+              <!-- Populated by JS -->
+            </ul>
           </div>
         </div>
       </div>
@@ -340,7 +467,9 @@
     <div class="max-w-3xl mb-10">
       <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-cyan-400">MSN-COIN-002 • MSN-EAB-002 • MSN-FIN-004</span>
       <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="coin_heading">ម៉ាស៊ីនគណនាតម្លៃកាក់ MSN ថាមវន្ត និងការបែងចែកផលចំណេញ</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="coin_sub">តម្លៃកាក់ MSN មិនកំណត់ដោយបុគ្គលឬ Admin ទេ ប៉ុន្តែគណនាដោយស្វ័យប្រវត្តិពីទ្រព្យសកម្មបម្រុងពិតប្រាកដ ÷ ចំនួនកាក់ផ្គត់ផ្គង់សរុប។</p>
+      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="coin_sub">
+        តម្លៃកាក់ MSN មិនកំណត់ដោយបុគ្គលឬ Admin ទេ ប៉ុន្តែគណនាដោយស្វ័យប្រវត្តិពីទ្រព្យសកម្មបម្រុងពិតប្រាកដ ÷ ចំនួនកាក់ផ្គត់ផ្គង់សរុប។
+      </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -405,7 +534,9 @@
           <span class="px-2.5 py-1 rounded-md bg-amber-500/15 text-amber-300 font-mono-code text-xs">100% NET VALUE</span>
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-300" data-i18n="alloc_desc">រាល់ប្រាក់ចំណេញសុទ្ធដែលប្រព័ន្ធបង្កើតបាន ត្រូវបានបែងចែកដោយស្វ័យប្រវត្តិតាមរូបមន្តតម្លាភាព ៦ ចំណែក៖</p>
+        <p class="text-xs sm:text-sm text-slate-300" data-i18n="alloc_desc">
+          រាល់ប្រាក់ចំណេញសុទ្ធដែលប្រព័ន្ធបង្កើតបាន ត្រូវបានបែងចែកដោយស្វ័យប្រវត្តិតាមរូបមន្តតម្លាភាព ៦ ចំណែក៖
+        </p>
 
         <!-- Stacked Visual Bar -->
         <div class="w-full h-5 rounded-full overflow-hidden flex bg-slate-800 p-0.5 gap-0.5">
@@ -472,11 +603,11 @@
         <div class="pt-2 border-t border-slate-800">
           <p class="text-[11px] font-mono-code text-slate-400 mb-2">MSN-INV-003 • APPROVED INVESTMENT SECTORS</p>
           <div class="flex flex-wrap gap-2 text-xs">
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_agri">កសិកម្ម &amp; កសិ-ឧស្សាហកម្ម</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_ret">ពាណិជ្ជកម្ម &amp; ដឹកជញ្ជូន</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_mfg">ផលិតកម្ម &amp; កែច្នៃ</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_tech">បច្ចេកវិទ្យា &amp; FinTech</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_re">អចលនទ្រព្យ &amp; ថាមពលបៃតង</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_agri">កសិកម្ម & កសិ-ឧស្សាហកម្ម</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_ret">ពាណិជ្ជកម្ម & ដឹកជញ្ជូន</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_mfg">ផលិតកម្ម & កែច្នៃ</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_tech">បច្ចេកវិទ្យា & FinTech</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_re">អចលនទ្រព្យ & ថាមពលបៃតង</span>
           </div>
         </div>
       </div>
@@ -490,66 +621,28 @@
     <div class="max-w-3xl mb-10">
       <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-amber-400">MSN-EAB-001 • MSN-DIGI-001 • MSN-EAM-001</span>
       <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="arch_heading">ស្ថាបត្យកម្មសហគ្រាស ៨ ស្រទាប់ និងប្រព័ន្ធកម្មវិធីកំពូល</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="arch_sub">គ្មាន Module ណាមួយត្រូវបានអនុញ្ញាតឱ្យអភិវឌ្ឍ ឬដាក់ឱ្យប្រើប្រាស់ឡើយ ប្រសិនបើមិនស្របតាម MSN Enterprise Blueprint និង MSN Master Charter។</p>
+      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="arch_sub">
+        គ្មាន Module ណាមួយត្រូវបានអនុញ្ញាតឱ្យអភិវឌ្ឍ ឬដាក់ឱ្យប្រើប្រាស់ឡើយ ប្រសិនបើមិនស្របតាម MSN Enterprise Blueprint និង MSN Master Charter។
+      </p>
     </div>
 
     <!-- Interactive Architecture Tabs -->
     <div class="flex flex-wrap gap-2 mb-6" id="archTabs">
-      <button onclick="switchArchTab('layers8')" id="tab-layers8" class="tab-btn-active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_8layers">ស្ថាបត្យកម្ម ៨ ស្រទាប់ (8 Enterprise Layers)</button>
-      <button onclick="switchArchTab('superapp')" id="tab-superapp" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_superapp">MSN Super App &amp; 6 Application Tiers</button>
-      <button onclick="switchArchTab('hierarchy')" id="tab-hierarchy" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_hierarchy">ឋានានុក្រមឯកសារកំពូល ១០ កម្រិត</button>
+      <button onclick="switchArchTab('layers8')" id="tab-layers8" class="tab-btn-active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_8layers">
+        ស្ថាបត្យកម្ម ៨ ស្រទាប់ (8 Enterprise Layers)
+      </button>
+      <button onclick="switchArchTab('superapp')" id="tab-superapp" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_superapp">
+        MSN Super App & 6 Application Tiers
+      </button>
+      <button onclick="switchArchTab('hierarchy')" id="tab-hierarchy" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_hierarchy">
+        ឋានានុក្រមឯកសារកំពូល ១០ កម្រិត
+      </button>
     </div>
 
     <!-- Tab Content Container -->
-    <div id="archTabContent" class="msn-glass rounded-3xl p-6 sm:p-8"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition">
-            <span class="text-[11px] font-mono-code text-amber-400 font-bold">Layer 1</span>
-            <h4 class="font-bold text-white text-sm mt-1">ស្ថាបត្យកម្មអភិបាលកិច្ច (Governance Architecture)</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">MSN-GOV-001..007, Board Charter, Ethics Charter, Audit &amp; Compliance</p>
-          </div>
-        
-          <div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition">
-            <span class="text-[11px] font-mono-code text-amber-400 font-bold">Layer 2</span>
-            <h4 class="font-bold text-white text-sm mt-1">ស្ថាបត្យកម្មសេដ្ឋកិច្ច (Economic Architecture)</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">ENG-001..006, Universal Economic Score (UES), Ownership &amp; Reward Engine</p>
-          </div>
-        
-          <div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition">
-            <span class="text-[11px] font-mono-code text-amber-400 font-bold">Layer 3</span>
-            <h4 class="font-bold text-white text-sm mt-1">ស្ថាបត្យកម្មធនធានមនុស្ស (Human Capital Architecture)</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">MSN-HCE-001, 5 Capitals Registry, Competency &amp; Leadership Ranking</p>
-          </div>
-        
-          <div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition">
-            <span class="text-[11px] font-mono-code text-amber-400 font-bold">Layer 4</span>
-            <h4 class="font-bold text-white text-sm mt-1">ស្ថាបត្យកម្មធុរកិច្ច (Business Architecture)</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Marketplace, Merchant, Supplier, Distributor &amp; Franchise Networks</p>
-          </div>
-        
-          <div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition">
-            <span class="text-[11px] font-mono-code text-amber-400 font-bold">Layer 5</span>
-            <h4 class="font-bold text-white text-sm mt-1">ស្ថាបត្យកម្មវិនិយោគ (Investment Architecture)</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">MSN-INV-003, Screening, Risk Rating (A–D), Portfolio &amp; Asset Valuation</p>
-          </div>
-        
-          <div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition">
-            <span class="text-[11px] font-mono-code text-amber-400 font-bold">Layer 6</span>
-            <h4 class="font-bold text-white text-sm mt-1">ស្ថាបត្យកម្មថ្នាលឌីជីថល (Digital Platform Architecture)</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">MSN Super App, Multi-Pocket Wallet, MSN Coin Engine, Partner Portals</p>
-          </div>
-        
-          <div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition">
-            <span class="text-[11px] font-mono-code text-amber-400 font-bold">Layer 7</span>
-            <h4 class="font-bold text-white text-sm mt-1">ស្ថាបត្យកម្មទិន្នន័យ និង AI (Data &amp; AI Architecture)</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Master Data Registry (MDR-001..007), AI Risk, Fraud &amp; Economic Advisor</p>
-          </div>
-        
-          <div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition">
-            <span class="text-[11px] font-mono-code text-amber-400 font-bold">Layer 8</span>
-            <h4 class="font-bold text-white text-sm mt-1">ស្ថាបត្យកម្មផលប៉ះពាល់ជាតិ (National Impact Architecture)</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">MSN-NAT-001/002, ESG Sustainability, Jobs, SMEs &amp; Farmers Dashboard</p>
-          </div>
-        </div></div>
+    <div id="archTabContent" class="msn-glass rounded-3xl p-6 sm:p-8">
+      <!-- Populated dynamically by JS -->
+    </div>
   </div>
 </section>
 
@@ -559,7 +652,9 @@
     <div class="max-w-3xl mb-10">
       <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-emerald-400">MSN-GOV-001 • MSN-GOV-002 • MSN-CONTROL-001</span>
       <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="gov_heading">អភិបាលកិច្ចថ្នាក់ជាតិ ប្រព័ន្ធតំណាង ៨ កម្រិត និងសវនកម្ម ៥ ស្រទាប់</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="gov_sub">MSN ត្រូវគ្រប់គ្រងដោយប្រព័ន្ធ អភិបាលកិច្ច និងគោលការណ៍ មិនមែនពឹងផ្អែកលើបុគ្គលណាម្នាក់ឡើយ ជាមួយវិធាន Zero Tolerance ចំពោះការក្លែងបន្លំ និងទំនាស់ផលប្រយោជន៍។</p>
+      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="gov_sub">
+        MSN ត្រូវគ្រប់គ្រងដោយប្រព័ន្ធ អភិបាលកិច្ច និងគោលការណ៍ មិនមែនពឹងផ្អែកលើបុគ្គលណាម្នាក់ឡើយ ជាមួយវិធាន Zero Tolerance ចំពោះការក្លែងបន្លំ និងទំនាស់ផលប្រយោជន៍។
+      </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -571,70 +666,8 @@
         </div>
 
         <div class="space-y-2.5" id="representationList">
-      <div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold">L1</span>
-          <span class="text-slate-200 font-medium">ក្រុមសមាជិក (Team Coordinator)</span>
+          <!-- Populated by JS -->
         </div>
-        <span class="font-mono-code text-emerald-400 font-bold">30</span>
-      </div>
-    
-      <div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold">L2</span>
-          <span class="text-slate-200 font-medium">តំណាងភូមិ / អង្គភាព (Village)</span>
-        </div>
-        <span class="font-mono-code text-emerald-400 font-bold">100</span>
-      </div>
-    
-      <div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold">L3</span>
-          <span class="text-slate-200 font-medium">តំណាងឃុំ / សង្កាត់ (Commune)</span>
-        </div>
-        <span class="font-mono-code text-emerald-400 font-bold">500</span>
-      </div>
-    
-      <div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold">L4</span>
-          <span class="text-slate-200 font-medium">តំណាងស្រុក / ខណ្ឌ (District)</span>
-        </div>
-        <span class="font-mono-code text-emerald-400 font-bold">3,000</span>
-      </div>
-    
-      <div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold">L5</span>
-          <span class="text-slate-200 font-medium">តំណាងក្រុង / ស្រុកធំ (City)</span>
-        </div>
-        <span class="font-mono-code text-emerald-400 font-bold">10,000</span>
-      </div>
-    
-      <div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold">L6</span>
-          <span class="text-slate-200 font-medium">តំណាងខេត្ត (Province)</span>
-        </div>
-        <span class="font-mono-code text-emerald-400 font-bold">50,000</span>
-      </div>
-    
-      <div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold">L7</span>
-          <span class="text-slate-200 font-medium">តំណាងតំបន់ (Region)</span>
-        </div>
-        <span class="font-mono-code text-emerald-400 font-bold">250,000</span>
-      </div>
-    
-      <div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold">L8</span>
-          <span class="text-slate-200 font-medium">ក្រុមប្រឹក្សាតំណាងថ្នាក់ជាតិ (National)</span>
-        </div>
-        <span class="font-mono-code text-emerald-400 font-bold">1,000,000+</span>
-      </div>
-    </div>
       </div>
 
       <!-- Right: 8 Governance Bodies & 5-Level Audit Control -->
@@ -643,38 +676,8 @@
         <div class="msn-glass rounded-3xl p-6">
           <h3 class="font-bold text-white text-base mb-3" data-i18n="bodies_title">ស្ថាប័នអភិបាលកិច្ចកំពូលទាំង ៨ (MSN-GOV-001)</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs" id="governanceBodiesGrid">
-      <div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium">
-        ១. សភាតំណាងសមាជិកជាតិ
-      </div>
-    
-      <div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium">
-        ២. ក្រុមប្រឹក្សាភិបាល (Board)
-      </div>
-    
-      <div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium">
-        ៣. គណៈកម្មាធិការវិនិយោគ
-      </div>
-    
-      <div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium">
-        ៤. គណៈកម្មាធិការហិរញ្ញវត្ថុ
-      </div>
-    
-      <div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium">
-        ៥. គណៈកម្មាធិការហានិភ័យ
-      </div>
-    
-      <div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium">
-        ៦. គណៈកម្មាធិការសវនកម្ម
-      </div>
-    
-      <div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium">
-        ៧. គណៈកម្មាធិការក្រមសីលធម៌
-      </div>
-    
-      <div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium">
-        ៨. គណៈគ្រប់គ្រងប្រតិបត្តិការ
-      </div>
-    </div>
+            <!-- Populated by JS -->
+          </div>
         </div>
 
         <!-- 5-Level Control & Leadership Index Formula -->
@@ -691,7 +694,7 @@
             </div>
             <div class="bg-[#0a1120] p-2.5 rounded-xl border border-slate-800">
               <span class="block font-mono-code text-cyan-400 font-bold">L3</span>
-              <span class="text-slate-300 mt-1 block" data-i18n="ctrl_3">Software &amp; AI</span>
+              <span class="text-slate-300 mt-1 block" data-i18n="ctrl_3">Software & AI</span>
             </div>
             <div class="bg-[#0a1120] p-2.5 rounded-xl border border-slate-800">
               <span class="block font-mono-code text-emerald-400 font-bold">L4</span>
@@ -721,74 +724,13 @@
     <div class="max-w-3xl mb-10">
       <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-amber-400">MSN-STR-00 • MSN-MBD-002</span>
       <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="road_heading">ផែនទីបង្ហាញផ្លូវយុទ្ធសាស្ត្រ ៥ ដំណាក់កាល (២០២៦ – ២០៥២)</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="road_sub">ដំណើរវិវត្តន៍ជាប្រព័ន្ធពីការកសាងគ្រឹះស្ថាប័ន រហូតដល់ប្រព័ន្ធអេកូឡូស៊ីសេដ្ឋកិច្ចឌីជីថលថ្នាក់ជាតិដែលមានសមាជិកជាង ១០ លាននាក់។</p>
+      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="road_sub">
+        ដំណើរវិវត្តន៍ជាប្រព័ន្ធពីការកសាងគ្រឹះស្ថាប័ន រហូតដល់ប្រព័ន្ធអេកូឡូស៊ីសេដ្ឋកិច្ចឌីជីថលថ្នាក់ជាតិដែលមានសមាជិកជាង ១០ លាននាក់។
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" id="roadmapCardsGrid">
-      <div class="msn-glass msn-glass-hover rounded-2xl p-5 flex flex-col justify-between">
-        <div>
-          <span class="text-[11px] font-mono-code text-amber-400 font-bold">PHASE 1 • 2026–2028</span>
-          <h3 class="font-bold text-white text-base mt-1">គ្រឹះស្ថាប័ន (Foundation)</h3>
-          <div class="mt-2 mb-3 inline-block px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono-code text-xs font-bold">
-            100,000 Members
-          </div>
-          <ul class="space-y-1.5 text-xs text-slate-300">
-            <li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>អភិបាលកិច្ច &amp; ធម្មនុញ្ញ</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>ថ្នាលបច្ចេកវិទ្យាស្នូល</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>សហគមន៍សាកល្បង (Pilot)</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>Human Capital Database</span></li>
-          </ul>
-        </div>
-      </div>
-    
-      <div class="msn-glass msn-glass-hover rounded-2xl p-5 flex flex-col justify-between">
-        <div>
-          <span class="text-[11px] font-mono-code text-amber-400 font-bold">PHASE 2 • 2028–2032</span>
-          <h3 class="font-bold text-white text-base mt-1">ការធ្វើឱ្យសកម្ម (Activation)</h3>
-          <div class="mt-2 mb-3 inline-block px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono-code text-xs font-bold">
-            500,000 Members
-          </div>
-          <ul class="space-y-1.5 text-xs text-slate-300">
-            <li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>MSN Marketplace</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>ប្រព័ន្ធ E-Wallet &amp; Coin</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>បណ្តាញដៃគូអាជីវកម្ម</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>ពង្រីកតាមបណ្តាខេត្ត</span></li>
-          </ul>
-        </div>
-      </div>
-    
-      <div class="msn-glass msn-glass-hover rounded-2xl p-5 flex flex-col justify-between">
-        <div>
-          <span class="text-[11px] font-mono-code text-amber-400 font-bold">PHASE 3 • 2032–2040</span>
-          <h3 class="font-bold text-white text-base mt-1">ការពង្រីកវិសាលភាព (Scaling)</h3>
-          <div class="mt-2 mb-3 inline-block px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono-code text-xs font-bold">
-            5,000,000 Members
-          </div>
-          <ul class="space-y-1.5 text-xs text-slate-300">
-            <li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>បណ្តាញចែកចាយជាតិ</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>ទីផ្សារមូលធនមនុស្ស</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>ថ្នាលវិនិយោគជាតិ</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>ថ្នាលទ្រព្យសកម្មឌីជីថល</span></li>
-          </ul>
-        </div>
-      </div>
-    
-      <div class="msn-glass msn-glass-hover rounded-2xl p-5 flex flex-col justify-between">
-        <div>
-          <span class="text-[11px] font-mono-code text-amber-400 font-bold">PHASE 4 • 2040–2045</span>
-          <h3 class="font-bold text-white text-base mt-1">អេកូឡូស៊ីជាតិ (Ecosystem)</h3>
-          <div class="mt-2 mb-3 inline-block px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono-code text-xs font-bold">
-            8,000,000 Members
-          </div>
-          <ul class="space-y-1.5 text-xs text-slate-300">
-            <li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>បណ្តាញមូលធនមនុស្សជាតិ</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>បណ្តាញធុរកិច្ចជាតិ</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>បណ្តាញវិនិយោគជាតិ</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>អភិបាលកិច្ច AI (AI Gov)</span></li>
-          </ul>
-        </div>
-      </div>
-    
-      <div class="msn-glass msn-glass-hover rounded-2xl p-5 flex flex-col justify-between">
-        <div>
-          <span class="text-[11px] font-mono-code text-amber-400 font-bold">PHASE 5 • 2045–2052</span>
-          <h3 class="font-bold text-white text-base mt-1">ស្ថាប័នជាតិ (Institutional)</h3>
-          <div class="mt-2 mb-3 inline-block px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono-code text-xs font-bold">
-            10,000,000+ Members
-          </div>
-          <ul class="space-y-1.5 text-xs text-slate-300">
-            <li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>ហេដ្ឋារចនាសម្ព័ន្ធជាតិ</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>780,000+ ដៃគូអាជីវកម្ម</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>ប្រព័ន្ធមរតកជំនាន់ក្រោយ</span></li><li class="flex items-start gap-1.5"><span class="text-amber-400">•</span><span>សមាហរណកម្មតំបន់</span></li>
-          </ul>
-        </div>
-      </div>
+      <!-- Populated by JS -->
     </div>
   </div>
 </section>
@@ -800,51 +742,27 @@
       <p class="font-bold text-white text-sm">MOHASEREI NETWORK (MSN) — ENTERPRISE SYSTEM</p>
       <p class="mt-1" data-i18n="footer_quote">«មនុស្សគ្រប់រូបមានតម្លៃ។ រាល់ការចូលរួមមានតម្លៃ។» — រៀបចំដោយ ឯកឧត្តម មេណ្ឌ មុនី</p>
     </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="font-mono-code text-amber-400/80">MSN-CHARTER-001 • V1.0</span>
+    </div>
   </div>
 </footer>
 
-<!-- Separate Files Export Modal (index.html, style.css, script.js) -->
-<div id="sourceModal" class="fixed inset-0 z-50 items-center justify-center bg-black/80 backdrop-blur-sm p-4 flex">
-  <div class="bg-[#0d1526] border border-amber-500/40 rounded-3xl max-w-4xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden">
-    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
-      <div>
-        <h3 class="font-bold text-white text-base sm:text-lg" data-i18n="modal_title">កូដបំបែកឯករាជ្យ (Separate Project Files)</h3>
-        <p class="text-xs text-slate-400" data-i18n="modal_sub">ចម្លង ឬទាញយកឯកសារនីមួយៗដាច់ដោយឡែកសម្រាប់ដាក់ក្នុងគម្រោងរបស់អ្នក</p>
-      </div>
-      <button onclick="closeSourceModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 flex items-center justify-center transition cursor-pointer">✕</button>
-    </div>
+<!-- ================= END INDEX.HTML ================= -->
 
-    <!-- File Selector Tabs -->
-    <div class="flex flex-wrap items-center justify-between gap-2 px-6 py-3 bg-[#090f1d] border-b border-slate-800">
-      <div class="flex items-center gap-2">
-        <button onclick="selectCodeFile('html')" id="codeTab-html" class="px-3.5 py-1.5 rounded-lg text-xs font-mono-code font-bold border border-slate-700 bg-slate-900 text-slate-300 cursor-pointer tab-btn-active">index.html</button>
-        <button onclick="selectCodeFile('css')" id="codeTab-css" class="px-3.5 py-1.5 rounded-lg text-xs font-mono-code font-bold border border-slate-700 bg-slate-900 text-slate-300 cursor-pointer">style.css</button>
-        <button onclick="selectCodeFile('js')" id="codeTab-js" class="px-3.5 py-1.5 rounded-lg text-xs font-mono-code font-bold border border-slate-700 bg-slate-900 text-slate-300 cursor-pointer">script.js</button>
-      </div>
-      <div class="flex items-center gap-2">
-        <button onclick="copySelectedCode()" id="copyCodeBtn" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 transition cursor-pointer">
-          Copy Code
-        </button>
-        <button onclick="downloadSelectedCode()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 transition cursor-pointer">
-          Download File
-        </button>
-      </div>
-    </div>
-
-    <!-- Code Viewer -->
-    <div class="p-4 sm:p-6 overflow-auto flex-1 bg-[#060b14]">
-      <pre id="codeViewerBox" class="text-xs font-mono-code text-slate-300 whitespace-pre-wrap break-words leading-relaxed">let currentLang = 'km';
+<script>
+  /* ================= SCRIPT.JS ================= */
+  let currentLang = 'km';
   let activeArchTab = 'layers8';
-  let activeCodeTab = 'html';
 
   const i18n = {
     km: {
       nav_subtitle: 'ប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី MSN (2026–2052)',
-      nav_charter: 'ធម្មនុញ្ញ &amp; រដ្ឋធម្មនុញ្ញ',
-      nav_ues: 'ម៉ាស៊ីនគណនា UES &amp; HCV',
-      nav_coin: 'MSN Coin &amp; ភាគលាភ',
+      nav_charter: 'ធម្មនុញ្ញ & រដ្ឋធម្មនុញ្ញ',
+      nav_ues: 'ម៉ាស៊ីនគណនា UES & HCV',
+      nav_coin: 'MSN Coin & ភាគលាភ',
       nav_arch: 'ស្ថាបត្យកម្ម ៨ ស្រទាប់',
-      nav_gov: 'អភិបាលកិច្ច &amp; សវនកម្ម',
+      nav_gov: 'អភិបាលកិច្ច & សវនកម្ម',
       nav_roadmap: 'ផែនទី 2026–2052',
       hero_author: 'រៀបចំដោយ៖ ឯកឧត្តម មេណ្ឌ មុនី (H.E. Mend Mony) — អគ្គស្ថាបនិក និងជាប្រធានក្រុមប្រឹក្សាភិបាល',
       hero_kicker: 'ឯកសារស្ថាបនាប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី MSN',
@@ -859,7 +777,7 @@
       prin_3_tag: 'គោលការណ៍ទី ៣',
       prin_3_title: 'ការចូលរួមទាំងអស់មានតម្លៃ',
       prin_3_desc: 'ទិញ លក់ សន្សំ វិនិយោគ បង្រៀន រៀន ស្ម័គ្រចិត្ត ត្រូវបម្លែងជា UES។',
-      cta_simulator: 'សាកល្បងគណនា UES &amp; Human Capital',
+      cta_simulator: 'សាកល្បងគណនា UES & Human Capital',
       cta_blueprint: 'មើលស្ថាបត្យកម្ម ៨ ស្រទាប់ (MSN-EAB-001)',
       kpi_panel_title: 'ទិសដៅយុទ្ធសាស្ត្រជាតិ MSN ឆ្នាំ ២០៥២',
       kpi_members: 'សមាជិកសរុប (Members)',
@@ -870,20 +788,20 @@
       kpi_hierarchy: 'ឋានានុក្រមឯកសារកំពូល',
       sim_heading: 'ម៉ាស៊ីនគណនាតម្លៃសេដ្ឋកិច្ចសកល (UES) និងមូលធនមនុស្ស (HCV)',
       sim_sub: 'កែតម្រូវសកម្មភាពចូលរួមទាំង ៥ ប្រភេទខាងក្រោម ដើម្បីមើលការគណនាពិន្ទុស្វ័យប្រវត្តិ តំណែងដឹកនាំ (Career Rank) កម្រិតអត្ថប្រយោជន៍ និងចំណែកកម្មសិទ្ធិសេដ្ឋកិច្ចរបស់សមាជិក។',
-      cat_fin: '១. ហិរញ្ញធន &amp; ធនអាជីវកម្ម (Financial &amp; Business Activity)',
+      cat_fin: '១. ហិរញ្ញធន & ធនអាជីវកម្ម (Financial & Business Activity)',
       lbl_savings: 'ប្រាក់សន្សំ ($1 = 1 pt)',
       lbl_purchase: 'ការទិញទំនិញ ($1 = 1 pt)',
       lbl_revenue: 'ការលក់/អាជីវកម្ម ($1 = 2 pts)',
       lbl_invest: 'ការវិនិយោគ ($1 = 3 pts)',
-      cat_know: '២. ធនចំណេះដឹង (Knowledge &amp; MSN Academy)',
+      cat_know: '២. ធនចំណេះដឹង (Knowledge & MSN Academy)',
       lbl_train: 'រៀនវគ្គបណ្តុះបណ្តាល (20pts/hr)',
       lbl_teach: 'បង្រៀន/ណែនាំ (30pts/hr)',
       lbl_content: 'បង្កើតមាតិកាចំណេះដឹង (50pts)',
-      cat_netsoc: '៣. ធនបណ្តាញ &amp; ធនសង្គម (Network &amp; Social Capital)',
+      cat_netsoc: '៣. ធនបណ្តាញ & ធនសង្គម (Network & Social Capital)',
       lbl_newmem: 'ណែនាំសមាជិកថ្មី (100pts/នាក់)',
       lbl_actmem: 'សមាជិកសកម្មក្នុងក្រុម (50pts/នាក់)',
       lbl_leadact: 'ដឹកនាំសកម្មភាព/គម្រោង (200pts)',
-      lbl_csr: 'ការងារស្ម័គ្រចិត្ត &amp; CSR (100pts)',
+      lbl_csr: 'ការងារស្ម័គ្រចិត្ត & CSR (100pts)',
       passport_title: 'លិខិតឆ្លងដែនសេដ្ឋកិច្ចសមាជិក',
       ues_total_lbl: 'ពិន្ទុសេដ្ឋកិច្ចសកល (Universal Economic Score)',
       rank_lbl: 'តំណែងស្វ័យប្រវត្តិ៖',
@@ -909,15 +827,15 @@
       alloc_4: 'មូលនិធិបច្ចេកវិទ្យា',
       alloc_5: 'មូលនិធិអភិវឌ្ឍធនធានមនុស្ស',
       alloc_6: 'មូលនិធិអភិវឌ្ឍសហគមន៍',
-      sec_agri: 'កសិកម្ម &amp; កសិ-ឧស្សាហកម្ម',
-      sec_ret: 'ពាណិជ្ជកម្ម &amp; ដឹកជញ្ជូន',
-      sec_mfg: 'ផលិតកម្ម &amp; កែច្នៃ',
-      sec_tech: 'បច្ចេកវិទ្យា &amp; FinTech',
-      sec_re: 'អចលនទ្រព្យ &amp; ថាមពលបៃតង',
+      sec_agri: 'កសិកម្ម & កសិ-ឧស្សាហកម្ម',
+      sec_ret: 'ពាណិជ្ជកម្ម & ដឹកជញ្ជូន',
+      sec_mfg: 'ផលិតកម្ម & កែច្នៃ',
+      sec_tech: 'បច្ចេកវិទ្យា & FinTech',
+      sec_re: 'អចលនទ្រព្យ & ថាមពលបៃតង',
       arch_heading: 'ស្ថាបត្យកម្មសហគ្រាស ៨ ស្រទាប់ និងប្រព័ន្ធកម្មវិធីកំពូល',
       arch_sub: 'គ្មាន Module ណាមួយត្រូវបានអនុញ្ញាតឱ្យអភិវឌ្ឍ ឬដាក់ឱ្យប្រើប្រាស់ឡើយ ប្រសិនបើមិនស្របតាម MSN Enterprise Blueprint និង MSN Master Charter។',
       tab_8layers: 'ស្ថាបត្យកម្ម ៨ ស្រទាប់ (8 Enterprise Layers)',
-      tab_superapp: 'MSN Super App &amp; 6 Application Tiers',
+      tab_superapp: 'MSN Super App & 6 Application Tiers',
       tab_hierarchy: 'ឋានានុក្រមឯកសារកំពូល ១០ កម្រិត',
       gov_heading: 'អភិបាលកិច្ចថ្នាក់ជាតិ ប្រព័ន្ធតំណាង ៨ កម្រិត និងសវនកម្ម ៥ ស្រទាប់',
       gov_sub: 'MSN ត្រូវគ្រប់គ្រងដោយប្រព័ន្ធ អភិបាលកិច្ច និងគោលការណ៍ មិនមែនពឹងផ្អែកលើបុគ្គលណាម្នាក់ឡើយ ជាមួយវិធាន Zero Tolerance ចំពោះការក្លែងបន្លំ និងទំនាស់ផលប្រយោជន៍។',
@@ -926,22 +844,22 @@
       control_title: 'ប្រព័ន្ធត្រួតពិនិត្យផ្ទៃក្នុង និងសវនកម្ម ៥ ស្រទាប់ (MSN-CONTROL-001)',
       ctrl_1: 'សមាជិក',
       ctrl_2: 'អ្នកគ្រប់គ្រង',
-      ctrl_3: 'Software &amp; AI',
+      ctrl_3: 'Software & AI',
       ctrl_4: 'សវនកម្មផ្ទៃក្នុង',
       ctrl_5: 'សវនកម្មឯករាជ្យ',
       road_heading: 'ផែនទីបង្ហាញផ្លូវយុទ្ធសាស្ត្រ ៥ ដំណាក់កាល (២០២៦ – ២០៥២)',
       road_sub: 'ដំណើរវិវត្តន៍ជាប្រព័ន្ធពីការកសាងគ្រឹះស្ថាប័ន រហូតដល់ប្រព័ន្ធអេកូឡូស៊ីសេដ្ឋកិច្ចឌីជីថលថ្នាក់ជាតិដែលមានសមាជិកជាង ១០ លាននាក់។',
-      footer_quote: '«មនុស្សគ្រប់រូបមានតម្លៃ។ រាល់ការចូលរួមមានតម្លៃ។» — រៀបចំដោយ ឯកឧត្តម មេណ្ឌ មុនី',
+      footer_quote: '«មនុស្សគ្រប់រូបមានតម្លៃ។ រាល់ការចូលរួមមានតម្លៃ។» — រៀបចំដោយ ឯកឧត្តម មេណ្ឌ មុនី'
     },
     en: {
       nav_subtitle: 'Moha Serey Enterprise System (2026–2052)',
-      nav_charter: 'Charter &amp; Constitution',
-      nav_ues: 'UES &amp; HCV Engine',
-      nav_coin: 'MSN Coin &amp; Profit Split',
+      nav_charter: 'Charter & Constitution',
+      nav_ues: 'UES & HCV Engine',
+      nav_coin: 'MSN Coin & Profit Split',
       nav_arch: '8-Layer Architecture',
-      nav_gov: 'Governance &amp; Audit',
+      nav_gov: 'Governance & Audit',
       nav_roadmap: '2026–2052 Roadmap',
-      hero_author: 'Prepared by: H.E. Mend Mony — Founder &amp; Chairman of the Board of Directors',
+      hero_author: 'Prepared by: H.E. Mend Mony — Founder & Chairman of the Board of Directors',
       hero_kicker: 'MOHASEREI NETWORK (MSN) ENTERPRISE SYSTEM SPECIFICATION',
       hero_title: 'Moha Serey Enterprise System Update (2026–2052)',
       hero_desc: 'A Participation-Based Digital Economic Ecosystem converting human, business, knowledge, network, and social contributions into verifiable economic ownership under 100% institutional governance, transparency, and auditability.',
@@ -954,7 +872,7 @@
       prin_3_tag: 'PRINCIPLE 03',
       prin_3_title: 'All Participation Has Value',
       prin_3_desc: 'Buying, selling, saving, investing, teaching, learning, and volunteering convert into UES.',
-      cta_simulator: 'Simulate UES &amp; Human Capital',
+      cta_simulator: 'Simulate UES & Human Capital',
       cta_blueprint: 'Explore 8-Layer Blueprint (MSN-EAB-001)',
       kpi_panel_title: 'MSN National Strategic Targets by 2052',
       kpi_members: 'Total Members',
@@ -963,22 +881,22 @@
       kpi_partners_sub: 'Merchants, Farmers, SMEs',
       kpi_layers: 'Architecture Layers',
       kpi_hierarchy: 'Supreme Doc Hierarchy',
-      sim_heading: 'Universal Economic Score (UES) &amp; Human Capital Value (HCV) Simulator',
+      sim_heading: 'Universal Economic Score (UES) & Human Capital Value (HCV) Simulator',
       sim_sub: 'Adjust the 5 participation capitals below to compute real-time UES, automatic Career Rank promotion, unlocked Benefits Tier, and cooperative reward share.',
-      cat_fin: '1. Financial &amp; Business Capital Activity',
+      cat_fin: '1. Financial & Business Capital Activity',
       lbl_savings: 'Savings ($1 = 1 pt)',
       lbl_purchase: 'Purchases ($1 = 1 pt)',
       lbl_revenue: 'Sales / Business ($1 = 2 pts)',
       lbl_invest: 'Investment ($1 = 3 pts)',
-      cat_know: '2. Knowledge Capital &amp; MSN Academy',
+      cat_know: '2. Knowledge Capital & MSN Academy',
       lbl_train: 'Training Attendance (20pts/hr)',
       lbl_teach: 'Teaching / Mentoring (30pts/hr)',
       lbl_content: 'Knowledge Content Creation (50pts)',
-      cat_netsoc: '3. Network &amp; Social Capital Activity',
+      cat_netsoc: '3. Network & Social Capital Activity',
       lbl_newmem: 'New Member Referral (100pts)',
       lbl_actmem: 'Active Team Members (50pts)',
       lbl_leadact: 'Lead Project / Activity (200pts)',
-      lbl_csr: 'Volunteering &amp; CSR Projects (100pts)',
+      lbl_csr: 'Volunteering & CSR Projects (100pts)',
       passport_title: 'Member Digital Economic Passport',
       ues_total_lbl: 'Universal Economic Score (UES)',
       rank_lbl: 'Automatic Rank:',
@@ -987,7 +905,7 @@
       reward_share_lbl: 'Est. Reward Pool Share',
       reward_pool_note: 'From $100,000 Pool',
       benefits_unlocked_lbl: 'Unlocked Membership Benefits (MSN-BEN-001):',
-      coin_heading: 'Dynamic MSN Coin Valuation &amp; Net Value Allocation Engine',
+      coin_heading: 'Dynamic MSN Coin Valuation & Net Value Allocation Engine',
       coin_sub: 'MSN Coin value is never fixed by an individual or Admin; it is algorithmically backed by verified Asset, Cash, and Investment Reserves divided by Total Coin Supply.',
       coin_calc_title: 'Real-Time MSN Coin Valuation Calculator',
       lbl_asset_res: 'Asset Reserve',
@@ -1004,423 +922,44 @@
       alloc_4: 'Technology Fund',
       alloc_5: 'Human Capital Fund',
       alloc_6: 'Community Development Fund',
-      sec_agri: 'Agriculture &amp; Agro-Industry',
-      sec_ret: 'Commerce &amp; Logistics',
-      sec_mfg: 'Manufacturing &amp; Processing',
-      sec_tech: 'Technology &amp; FinTech',
-      sec_re: 'Real Estate &amp; Green Energy',
-      arch_heading: '8-Layer Enterprise Architecture &amp; Master System Blueprint',
+      sec_agri: 'Agriculture & Agro-Industry',
+      sec_ret: 'Commerce & Logistics',
+      sec_mfg: 'Manufacturing & Processing',
+      sec_tech: 'Technology & FinTech',
+      sec_re: 'Real Estate & Green Energy',
+      arch_heading: '8-Layer Enterprise Architecture & Master System Blueprint',
       arch_sub: 'No software module may be developed, procured, or deployed unless strictly compliant with MSN Enterprise Blueprint (MSN-EAB-001) and MSN Master Charter.',
       tab_8layers: '8 Enterprise Layers (MSN-EAB-001)',
-      tab_superapp: 'MSN Super App &amp; 6 Application Tiers',
+      tab_superapp: 'MSN Super App & 6 Application Tiers',
       tab_hierarchy: '10-Level Supreme Document Hierarchy',
-      gov_heading: 'National Governance, 8-Level Representation &amp; 5-Layer Audit Control',
+      gov_heading: 'National Governance, 8-Level Representation & 5-Layer Audit Control',
       gov_sub: 'MSN is governed by institutional systems and rules rather than individuals, enforced by Zero Tolerance policies against fraud and conflicts of interest.',
       rep_title: 'Grassroots-to-National Representative Ladder (MSN-GOV-002)',
       bodies_title: '8 Supreme Governance Bodies (MSN-GOV-001)',
-      control_title: '5-Layer Internal Control &amp; Audit Framework (MSN-CONTROL-001)',
+      control_title: '5-Layer Internal Control & Audit Framework (MSN-CONTROL-001)',
       ctrl_1: 'Self Control',
       ctrl_2: 'Management',
-      ctrl_3: 'Software &amp; AI',
+      ctrl_3: 'Software & AI',
       ctrl_4: 'Internal Audit',
       ctrl_5: 'Independent Audit',
       road_heading: '5-Phase Strategic Roadmap (2026 – 2052)',
       road_sub: 'Systematic evolution from institutional foundation to a nationwide digital cooperative economic infrastructure exceeding 10,000,000 members.',
-      footer_quote: '"Every person has value. Every participation has value." — Prepared by H.E. Mend Mony',
-      footer_export: 'Export Separate Files (index.html, style.css, script.js)',
-      modal_title: 'Separate Project Source Files',
-      modal_sub: 'Copy or download each standalone file for your repository'
+      footer_quote: '"Every person has value. Every participation has value." — Prepared by H.E. Mend Mony'
     }
   };
-
-  const ranksData = [
-    { min: 0, name: 'Member', km: 'សមាជិក (Member)', tier: 'BRONZE TIER', benefitsKm: ['កាបូបឌីជីថល E-Wallet', 'កំណត់ត្រា Economic Passport'], benefitsEn: ['Digital E-Wallet Access', 'Economic Passport Ledger'] },
-    { min: 1000, name: 'Associate', km: 'សមាជិកប្រតិបត្តិ (Associate)', tier: 'SILVER TIER', benefitsKm: ['កាបូបឌីជីថល E-Wallet', 'ប្រាក់រង្វាន់ &amp; ចំណែកភាគលាភ', 'សិទ្ធិចូលរៀន MSN Academy'], benefitsEn: ['Digital E-Wallet', 'Rewards &amp; Profit Sharing', 'MSN Academy Training Access'] },
-    { min: 10000, name: 'Coordinator', km: 'អ្នកសម្របសម្រួល (Coordinator)', tier: 'GOLD TIER', benefitsKm: ['អត្ថប្រយោជន៍ Silver ទាំងអស់', 'សិទ្ធិចូលរួមគម្រោងវិនិយោគ', 'កម្មវិធីអភិវឌ្ឍភាពជាអ្នកដឹកនាំ'], benefitsEn: ['All Silver Benefits', 'Investment Exchange Access', 'Leadership Development Program'] },
-    { min: 50000, name: 'Supervisor', km: 'អ្នកត្រួតពិនិត្យ (Supervisor)', tier: 'GOLD TIER', benefitsKm: ['អត្ថប្រយោជន៍ Gold ទាំងអស់', 'សិទ្ធិដឹកនាំក្រុមមូលដ្ឋាន', 'ប្រាក់រង្វាន់ភាពជាអ្នកដឹកនាំ'], benefitsEn: ['All Gold Benefits', 'Local Team Governance Rights', 'Leadership Performance Bonus'] },
-    { min: 150000, name: 'Manager', km: 'ប្រធានគ្រប់គ្រង (Manager)', tier: 'PLATINUM TIER', benefitsKm: ['កម្មវិធីថ្នាក់ដឹកនាំប្រតិបត្តិ (Executive)', 'អាទិភាពភាពជាដៃគូអាជីវកម្ម', 'សិទ្ធិបោះឆ្នោតគណៈកម្មាធិការ'], benefitsEn: ['Executive Leadership Program', 'Business Partnership Priority', 'Committee Voting Rights'] },
-    { min: 500000, name: 'Director', km: 'នាយកប្រតិបត្តិ (Director)', tier: 'PLATINUM TIER', benefitsKm: ['អត្ថប្រយោជន៍ Platinum ទាំងអស់', 'សិទ្ធិគ្រប់គ្រងមូលនិធិវិនិយោគតំបន់'], benefitsEn: ['All Platinum Benefits', 'Regional Investment Oversight'] },
-    { min: 2000000, name: 'Provincial Director', km: 'នាយកខេត្ត (Provincial Director)', tier: 'DIAMOND TIER', benefitsKm: ['សិទ្ធិអភិបាលកិច្ចថ្នាក់ខេត្ត/ជាតិ', 'កម្មវិធីផ្ទេរមរតកទ្រព្យសម្បត្តិ ECO-003'], benefitsEn: ['Provincial &amp; National Governance Rights', 'Generational Wealth Transfer (ECO-003)'] },
-    { min: 5000000, name: 'Regional Director', km: 'នាយកតំបន់ (Regional Director)', tier: 'DIAMOND TIER', benefitsKm: ['សមាជិកក្រុមប្រឹក្សាតំណាងតំបន់', 'សិទ្ធិអនុម័តគម្រោងយុទ្ធសាស្ត្រ'], benefitsEn: ['Regional Representative Council Seat', 'Strategic Project Approval Rights'] },
-    { min: 20000000, name: 'National Director', km: 'នាយកថ្នាក់ជាតិ (National Director)', tier: 'DIAMOND TIER', benefitsKm: ['សភាតំណាងសមាជិកជាតិកំពូល', 'សិទ្ធិអភិបាលកិច្ចកំពូល MSN-GOV-001'], benefitsEn: ['Supreme National Member Assembly', 'Top-Level Governance Rights (MSN-GOV-001)'] }
-  ];
-
-  function recalculateEcosystem() {
-    const savings = Number(document.getElementById('in_savings').value);
-    const purchase = Number(document.getElementById('in_purchase').value);
-    const revenue = Number(document.getElementById('in_revenue').value);
-    const invest = Number(document.getElementById('in_invest').value);
-
-    const train = Number(document.getElementById('in_train').value);
-    const teach = Number(document.getElementById('in_teach').value);
-    const content = Number(document.getElementById('in_content').value);
-
-    const newmem = Number(document.getElementById('in_newmem').value);
-    const actmem = Number(document.getElementById('in_actmem').value);
-    const leadact = Number(document.getElementById('in_leadact').value);
-    const csr = Number(document.getElementById('in_csr').value);
-
-    // Update UI value spans
-    document.getElementById('val_savings').textContent = savings.toLocaleString();
-    document.getElementById('val_purchase').textContent = purchase.toLocaleString();
-    document.getElementById('val_revenue').textContent = revenue.toLocaleString();
-    document.getElementById('val_invest').textContent = invest.toLocaleString();
-    document.getElementById('val_train').textContent = train;
-    document.getElementById('val_teach').textContent = teach;
-    document.getElementById('val_content').textContent = content;
-    document.getElementById('val_newmem').textContent = newmem;
-    document.getElementById('val_actmem').textContent = actmem;
-    document.getElementById('val_leadact').textContent = leadact;
-    document.getElementById('val_csr').textContent = csr;
-
-    // Calculate Component Scores per MSN-ENG-001
-    const finScore = (savings * 1) + (purchase * 1) + (invest * 3);
-    const busScore = (revenue * 2);
-    const knowScore = (train * 20) + (teach * 30) + (content * 50);
-    const netScore = (newmem * 100) + (actmem * 50);
-    const leadScore = (leadact * 200);
-    const socScore = (csr * 100);
-
-    const uesTotal = finScore + busScore + knowScore + netScore + leadScore + socScore;
-    const hcvScore = Math.round((finScore * 0.25) + (busScore * 0.25) + (knowScore * 0.20) + ((netScore + leadScore) * 0.20) + (socScore * 0.10));
-
-    document.getElementById('finPointsBadge').textContent = (finScore + busScore).toLocaleString() + ' pts';
-    document.getElementById('knowPointsBadge').textContent = knowScore.toLocaleString() + ' pts';
-    document.getElementById('netSocPointsBadge').textContent = (netScore + leadScore + socScore).toLocaleString() + ' pts';
-
-    document.getElementById('uesTotalDisplay').textContent = uesTotal.toLocaleString();
-    document.getElementById('hcvScoreDisplay').textContent = hcvScore.toLocaleString();
-
-    // Determine Current &amp; Next Rank
-    let currentRank = ranksData[0];
-    let nextRank = ranksData[1];
-    for (let i = 0; i &lt; ranksData.length; i++) {
-      if (uesTotal &gt;= ranksData[i].min) {
-        currentRank = ranksData[i];
-        nextRank = ranksData[i + 1] || null;
-      }
-    }
-
-    document.getElementById('careerRankDisplay').textContent = currentLang === 'km' ? currentRank.km : currentRank.name;
-    document.getElementById('benefitTierBadge').textContent = currentRank.tier;
-
-    if (nextRank) {
-      const pct = Math.min(100, Math.max(5, Math.round(((uesTotal - currentRank.min) / (nextRank.min - currentRank.min)) * 100)));
-      document.getElementById('rankProgressBar').style.width = pct + '%';
-      document.getElementById('nextRankTargetText').textContent = `${nextRank.min.toLocaleString()} pts (${nextRank.name})`;
-    } else {
-      document.getElementById('rankProgressBar').style.width = '100%';
-      document.getElementById('nextRankTargetText').textContent = 'MAX RANK ACHIEVED';
-    }
-
-    // Estimated Reward Pool Share (Assuming Network Total UES = 10,000,000 &amp; Pool = $100,000)
-    const estShare = (uesTotal / 10000000) * 100000;
-    document.getElementById('rewardShareDisplay').textContent = '$' + estShare.toFixed(2);
-
-    // Benefits List
-    const benefitsArr = currentLang === 'km' ? currentRank.benefitsKm : currentRank.benefitsEn;
-    document.getElementById('unlockedBenefitsList').innerHTML = benefitsArr.map(b =&gt;
-      `&lt;li class="flex items-center gap-2"&gt;&lt;span class="text-emerald-400"&gt;✓&lt;/span&gt;&lt;span&gt;${b}&lt;/span&gt;&lt;/li&gt;`
-    ).join('');
-  }
-
-  function recalculateCoin() {
-    const assetRes = Number(document.getElementById('in_asset_res').value);
-    const cashRes = Number(document.getElementById('in_cash_res').value);
-    const invRes = Number(document.getElementById('in_inv_res').value);
-    const supply = Number(document.getElementById('in_coin_supply').value);
-
-    document.getElementById('val_asset_res').textContent = assetRes.toLocaleString();
-    document.getElementById('val_cash_res').textContent = cashRes.toLocaleString();
-    document.getElementById('val_inv_res').textContent = invRes.toLocaleString();
-    document.getElementById('val_coin_supply').textContent = supply.toLocaleString();
-
-    const totalRes = assetRes + cashRes + invRes;
-    const coinPrice = totalRes / supply;
-
-    document.getElementById('totalReserveDisplay').textContent = '$' + totalRes.toLocaleString();
-    document.getElementById('coinPriceDisplay').textContent = '$' + coinPrice.toFixed(4);
-  }
-
-  function renderArchTab() {
-    const container = document.getElementById('archTabContent');
-    if (activeArchTab === 'layers8') {
-      const layers = [
-        { num: 'Layer 1', titleKm: 'ស្ថាបត្យកម្មអភិបាលកិច្ច (Governance Architecture)', titleEn: 'Layer 1: Governance Architecture', desc: 'MSN-GOV-001..007, Board Charter, Ethics Charter, Audit &amp; Compliance' },
-        { num: 'Layer 2', titleKm: 'ស្ថាបត្យកម្មសេដ្ឋកិច្ច (Economic Architecture)', titleEn: 'Layer 2: Economic Architecture', desc: 'ENG-001..006, Universal Economic Score (UES), Ownership &amp; Reward Engine' },
-        { num: 'Layer 3', titleKm: 'ស្ថាបត្យកម្មធនធានមនុស្ស (Human Capital Architecture)', titleEn: 'Layer 3: Human Capital Architecture', desc: 'MSN-HCE-001, 5 Capitals Registry, Competency &amp; Leadership Ranking' },
-        { num: 'Layer 4', titleKm: 'ស្ថាបត្យកម្មធុរកិច្ច (Business Architecture)', titleEn: 'Layer 4: Business Architecture', desc: 'Marketplace, Merchant, Supplier, Distributor &amp; Franchise Networks' },
-        { num: 'Layer 5', titleKm: 'ស្ថាបត្យកម្មវិនិយោគ (Investment Architecture)', titleEn: 'Layer 5: Investment Architecture', desc: 'MSN-INV-003, Screening, Risk Rating (A–D), Portfolio &amp; Asset Valuation' },
-        { num: 'Layer 6', titleKm: 'ស្ថាបត្យកម្មថ្នាលឌីជីថល (Digital Platform Architecture)', titleEn: 'Layer 6: Digital Platform Architecture', desc: 'MSN Super App, Multi-Pocket Wallet, MSN Coin Engine, Partner Portals' },
-        { num: 'Layer 7', titleKm: 'ស្ថាបត្យកម្មទិន្នន័យ និង AI (Data &amp; AI Architecture)', titleEn: 'Layer 7: Data &amp; AI Architecture', desc: 'Master Data Registry (MDR-001..007), AI Risk, Fraud &amp; Economic Advisor' },
-        { num: 'Layer 8', titleKm: 'ស្ថាបត្យកម្មផលប៉ះពាល់ជាតិ (National Impact Architecture)', titleEn: 'Layer 8: National Impact Architecture', desc: 'MSN-NAT-001/002, ESG Sustainability, Jobs, SMEs &amp; Farmers Dashboard' }
-      ];
-      container.innerHTML = `&lt;div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"&gt;` +
-        layers.map(l =&gt; `
-          &lt;div class="bg-[#0a1120] border border-slate-800 hover:border-amber-400/50 rounded-2xl p-4 transition"&gt;
-            &lt;span class="text-[11px] font-mono-code text-amber-400 font-bold"&gt;${l.num}&lt;/span&gt;
-            &lt;h4 class="font-bold text-white text-sm mt-1"&gt;${currentLang === 'km' ? l.titleKm : l.titleEn}&lt;/h4&gt;
-            &lt;p class="text-xs text-slate-400 mt-2 leading-relaxed"&gt;${l.desc}&lt;/p&gt;
-          &lt;/div&gt;
-        `).join('') + `&lt;/div&gt;`;
-    } else if (activeArchTab === 'superapp') {
-      const tiers = [
-        { tier: 'TIER 1 • CORE SYSTEMS', items: ['IDM-001 Identity Platform', 'GOV-001 Governance Platform', 'HCM-001 Human Capital', 'ECO-001 Economic Engine', 'WAL-001 Multi-Pocket Wallet', 'COIN-001 Digital Asset'] },
-        { tier: 'TIER 2 • BUSINESS SYSTEMS', items: ['MSN Marketplace', 'Merchant &amp; POS Network', 'Supplier &amp; Distributor ERP', 'Franchise &amp; Service CRM'] },
-        { tier: 'TIER 3 • FINANCIAL SYSTEMS', items: ['FIN-001 Contribution Engine', 'FIN-002 Profit Sharing', 'FIN-003 Investment Mgmt', 'FIN-004 Asset Mgmt', 'FIN-005 Reserve Fund'] },
-        { tier: 'TIER 4 • EDUCATION (MSN ACADEMY)', items: ['EDU-001 MSN Academy', 'EDU-002 LMS Platform', 'EDU-003 Certification', 'EDU-004 Leadership Academy'] },
-        { tier: 'TIER 5 • ANALYTICS &amp; AI', items: ['AI-001 Economic Intelligence', 'AI-002 Risk Analytics', 'AI-003 Leadership Analytics', 'AI-004 Investment AI', 'AI-005 National Impact'] },
-        { tier: 'TIER 6 • STAKEHOLDER PORTALS', items: ['Government Portal', 'Investor Relations Portal', 'Business Partner Portal', 'University &amp; NGO Portals'] }
-      ];
-      container.innerHTML = `&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"&gt;` +
-        tiers.map(t =&gt; `
-          &lt;div class="bg-[#0a1120] border border-slate-800 rounded-2xl p-4"&gt;
-            &lt;p class="text-xs font-mono-code text-cyan-400 font-bold mb-2.5"&gt;${t.tier}&lt;/p&gt;
-            &lt;ul class="space-y-1.5 text-xs text-slate-300"&gt;
-              ${t.items.map(i =&gt; `&lt;li class="flex items-center gap-2"&gt;&lt;span class="w-1.5 h-1.5 rounded-full bg-amber-400"&gt;&lt;/span&gt;&lt;span&gt;${i}&lt;/span&gt;&lt;/li&gt;`).join('')}
-            &lt;/ul&gt;
-          &lt;/div&gt;
-        `).join('') + `&lt;/div&gt;`;
-    } else {
-      const hierarchy = [
-        '1. MSN-CHARTER-001 : Master Charter (ឯកសារកំពូលបំផុត 2026–2052)',
-        '2. MSN-EAB-001 : Enterprise Architecture Blueprint (ស្ថាបត្យកម្មសហគ្រាស ៨ ស្រទាប់)',
-        '3. MSN-GOV-001 : Master Governance Framework (ក្របខ័ណ្ឌអភិបាលកិច្ចកំពូល)',
-        '4. MSN-HCE-001 : Human Capital Economy Framework (សេដ្ឋកិច្ចមូលធនមនុស្ស)',
-        '5. MSN-ECO-001 : Universal Economic Value Framework (តម្លៃសេដ្ឋកិច្ចសកល)',
-        '6. MSN-POL-001 : Enterprise Policy Manual (សៀវភៅគោលនយោបាយកំពូល ៥ ជំពូក)',
-        '7. MSN-SOP-001 : Enterprise SOP Manual (នីតិវិធីប្រតិបត្តិការស្តង់ដារ ១០ ជំហាន)',
-        '8. MSN-DATA-001 &amp; MSN-LEGAL-001 : Master Data, Legal, Risk &amp; AI Frameworks',
-        '9. MSN-EAM-001 &amp; MSN-BPM-001 : Enterprise Application Map &amp; Business Processes',
-        '10. MSN-CONTROL-001 : Internal Control, Audit &amp; Operational Software Modules'
-      ];
-      container.innerHTML = `&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-3"&gt;` +
-        hierarchy.map(h =&gt; `
-          &lt;div class="bg-[#0a1120] border border-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm font-medium text-slate-200 flex items-center gap-3"&gt;
-            &lt;span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"&gt;&lt;/span&gt;
-            &lt;span&gt;${h}&lt;/span&gt;
-          &lt;/div&gt;
-        `).join('') + `&lt;/div&gt;`;
-    }
-  }
-
-  function switchArchTab(tabId) {
-    activeArchTab = tabId;
-    ['layers8', 'superapp', 'hierarchy'].forEach(id =&gt; {
-      const btn = document.getElementById('tab-' + id);
-      if (id === tabId) btn.classList.add('tab-btn-active');
-      else btn.classList.remove('tab-btn-active');
-    });
-    renderArchTab();
-  }
-
-  function renderGovernanceAndRoadmap() {
-    const reps = [
-      { lvl: 'L1', km: 'ក្រុមសមាជិក (Team Coordinator)', en: 'Member Team Coordinator', count: '30' },
-      { lvl: 'L2', km: 'តំណាងភូមិ / អង្គភាព (Village)', en: 'Village Representative', count: '100' },
-      { lvl: 'L3', km: 'តំណាងឃុំ / សង្កាត់ (Commune)', en: 'Commune Representative', count: '500' },
-      { lvl: 'L4', km: 'តំណាងស្រុក / ខណ្ឌ (District)', en: 'District Representative', count: '3,000' },
-      { lvl: 'L5', km: 'តំណាងក្រុង / ស្រុកធំ (City)', en: 'City Representative', count: '10,000' },
-      { lvl: 'L6', km: 'តំណាងខេត្ត (Province)', en: 'Provincial Representative', count: '50,000' },
-      { lvl: 'L7', km: 'តំណាងតំបន់ (Region)', en: 'Regional Representative', count: '250,000' },
-      { lvl: 'L8', km: 'ក្រុមប្រឹក្សាតំណាងថ្នាក់ជាតិ (National)', en: 'National Representative Council', count: '1,000,000+' }
-    ];
-
-    document.getElementById('representationList').innerHTML = reps.map(r =&gt; `
-      &lt;div class="flex items-center justify-between bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs"&gt;
-        &lt;div class="flex items-center gap-2.5"&gt;
-          &lt;span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono-code font-bold"&gt;${r.lvl}&lt;/span&gt;
-          &lt;span class="text-slate-200 font-medium"&gt;${currentLang === 'km' ? r.km : r.en}&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;span class="font-mono-code text-emerald-400 font-bold"&gt;${r.count}&lt;/span&gt;
-      &lt;/div&gt;
-    `).join('');
-
-    const bodies = [
-      { km: '១. សភាតំណាងសមាជិកជាតិ', en: '1. National Member Assembly' },
-      { km: '២. ក្រុមប្រឹក្សាភិបាល (Board)', en: '2. Board of Directors' },
-      { km: '៣. គណៈកម្មាធិការវិនិយោគ', en: '3. Investment Committee' },
-      { km: '៤. គណៈកម្មាធិការហិរញ្ញវត្ថុ', en: '4. Finance Committee' },
-      { km: '៥. គណៈកម្មាធិការហានិភ័យ', en: '5. Risk Committee' },
-      { km: '៦. គណៈកម្មាធិការសវនកម្ម', en: '6. Audit Committee' },
-      { km: '៧. គណៈកម្មាធិការក្រមសីលធម៌', en: '7. Ethics Committee' },
-      { km: '៨. គណៈគ្រប់គ្រងប្រតិបត្តិការ', en: '8. Executive Management' }
-    ];
-
-    document.getElementById('governanceBodiesGrid').innerHTML = bodies.map(b =&gt; `
-      &lt;div class="bg-[#0a1120] border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-medium"&gt;
-        ${currentLang === 'km' ? b.km : b.en}
-      &lt;/div&gt;
-    `).join('');
-
-    const phases = [
-      {
-        phase: 'PHASE 1 • 2026–2028',
-        titleKm: 'គ្រឹះស្ថាប័ន (Foundation)',
-        titleEn: 'Foundation Phase',
-        target: '100,000 Members',
-        itemsKm: ['អភិបាលកិច្ច &amp; ធម្មនុញ្ញ', 'ថ្នាលបច្ចេកវិទ្យាស្នូល', 'សហគមន៍សាកល្បង (Pilot)', 'Human Capital Database'],
-        itemsEn: ['Governance &amp; Charter', 'Core Digital Platform', 'Pilot Communities', 'Human Capital Database']
-      },
-      {
-        phase: 'PHASE 2 • 2028–2032',
-        titleKm: 'ការធ្វើឱ្យសកម្ម (Activation)',
-        titleEn: 'Activation Phase',
-        target: '500,000 Members',
-        itemsKm: ['MSN Marketplace', 'ប្រព័ន្ធ E-Wallet &amp; Coin', 'បណ្តាញដៃគូអាជីវកម្ម', 'ពង្រីកតាមបណ្តាខេត្ត'],
-        itemsEn: ['MSN Marketplace', 'Wallet &amp; Coin Ecosystem', 'Partner Network', 'Provincial Expansion']
-      },
-      {
-        phase: 'PHASE 3 • 2032–2040',
-        titleKm: 'ការពង្រីកវិសាលភាព (Scaling)',
-        titleEn: 'Scaling Phase',
-        target: '5,000,000 Members',
-        itemsKm: ['បណ្តាញចែកចាយជាតិ', 'ទីផ្សារមូលធនមនុស្ស', 'ថ្នាលវិនិយោគជាតិ', 'ថ្នាលទ្រព្យសកម្មឌីជីថល'],
-        itemsEn: ['National Distribution', 'Human Capital Market', 'Investment Platform', 'Digital Asset Platform']
-      },
-      {
-        phase: 'PHASE 4 • 2040–2045',
-        titleKm: 'អេកូឡូស៊ីជាតិ (Ecosystem)',
-        titleEn: 'National Ecosystem',
-        target: '8,000,000 Members',
-        itemsKm: ['បណ្តាញមូលធនមនុស្សជាតិ', 'បណ្តាញធុរកិច្ចជាតិ', 'បណ្តាញវិនិយោគជាតិ', 'អភិបាលកិច្ច AI (AI Gov)'],
-        itemsEn: ['National Human Network', 'National Business Network', 'National Investment Net', 'AI Governance Engine']
-      },
-      {
-        phase: 'PHASE 5 • 2045–2052',
-        titleKm: 'ស្ថាប័នជាតិ (Institutional)',
-        titleEn: 'Institutionalization',
-        target: '10,000,000+ Members',
-        itemsKm: ['ហេដ្ឋារចនាសម្ព័ន្ធជាតិ', '780,000+ ដៃគូអាជីវកម្ម', 'ប្រព័ន្ធមរតកជំនាន់ក្រោយ', 'សមាហរណកម្មតំបន់'],
-        itemsEn: ['National Infrastructure', '780,000+ Business Partners', 'Intergenerational Wealth', 'Regional Integration']
-      }
-    ];
-
-    document.getElementById('roadmapCardsGrid').innerHTML = phases.map(p =&gt; `
-      &lt;div class="msn-glass msn-glass-hover rounded-2xl p-5 flex flex-col justify-between"&gt;
-        &lt;div&gt;
-          &lt;span class="text-[11px] font-mono-code text-amber-400 font-bold"&gt;${p.phase}&lt;/span&gt;
-          &lt;h3 class="font-bold text-white text-base mt-1"&gt;${currentLang === 'km' ? p.titleKm : p.titleEn}&lt;/h3&gt;
-          &lt;div class="mt-2 mb-3 inline-block px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono-code text-xs font-bold"&gt;
-            ${p.target}
-          &lt;/div&gt;
-          &lt;ul class="space-y-1.5 text-xs text-slate-300"&gt;
-            ${(currentLang === 'km' ? p.itemsKm : p.itemsEn).map(item =&gt; `&lt;li class="flex items-start gap-1.5"&gt;&lt;span class="text-amber-400"&gt;•&lt;/span&gt;&lt;span&gt;${item}&lt;/span&gt;&lt;/li&gt;`).join('')}
-          &lt;/ul&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    `).join('');
-  }
-
-  function toggleLanguage() {
-    currentLang = currentLang === 'km' ? 'en' : 'km';
-    document.documentElement.lang = currentLang;
-    document.getElementById('langBadgeText').textContent = currentLang === 'km' ? 'English' : 'ភាសាខ្មែរ';
-
-    document.querySelectorAll('[data-i18n]').forEach(el =&gt; {
-      const key = el.getAttribute('data-i18n');
-      if (i18n[currentLang][key]) {
-        el.textContent = i18n[currentLang][key];
-      }
-    });
-
+// ... existing code ... -->
     recalculateEcosystem();
     renderArchTab();
     renderGovernanceAndRoadmap();
   }
 
-  /* ================= SEPARATE FILE EXPORTER LOGIC ================= */
-  function getExtractedFiles() {
-    const fullDoc = document.documentElement.outerHTML;
-    const styleMatch = fullDoc.match(/\/\* ================= STYLE\.CSS ================= \*\/([\s\S]*?)\/\* ================= END STYLE\.CSS ================= \*\//);
-    const scriptMatch = fullDoc.match(/\/\* ================= SCRIPT\.JS ================= \*\/([\s\S]*?)\/\* ================= END SCRIPT\.JS ================= \*\//);
-    const bodyMatch = fullDoc.match(/&lt;!-- ================= INDEX\.HTML ================= --&gt;([\s\S]*?)&lt;!-- ================= END INDEX\.HTML ================= --&gt;/);
-
-    const cssCode = styleMatch ? styleMatch[1].trim() : '';
-    const jsCode = scriptMatch ? scriptMatch[1].trim() : '';
-    const htmlBody = bodyMatch ? bodyMatch[1].trim() : '';
-
-    const standaloneHtml = `&lt;!DOCTYPE html&gt;
-&lt;html lang="km" class="scroll-smooth"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8" /&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
-  &lt;title&gt;Moha Serey System Update (MSN 2026–2052) | ប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី&lt;/title&gt;
-  &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;\/script&gt;
-  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
-  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-  &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Kantumruy+Pro:wght@300;400;500;600;700&amp;family=Moul&amp;display=swap" rel="stylesheet"&gt;
-  &lt;link rel="stylesheet" href="style.css" /&gt;
-&lt;/head&gt;
-&lt;body class="antialiased selection:bg-amber-400/30 selection:text-amber-200"&gt;
-${htmlBody}
-  &lt;script src="script.js"&gt;&lt;\/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;`;
-
-    return { html: standaloneHtml, css: cssCode, js: jsCode };
-  }
-
-  function openSourceModal() {
-    document.getElementById('sourceModal').classList.remove('hidden');
-    document.getElementById('sourceModal').classList.add('flex');
-    selectCodeFile(activeCodeTab);
-  }
-
-  function closeSourceModal() {
-    document.getElementById('sourceModal').classList.add('hidden');
-    document.getElementById('sourceModal').classList.remove('flex');
-  }
-
-  function selectCodeFile(type) {
-    activeCodeTab = type;
-    ['html', 'css', 'js'].forEach(t =&gt; {
-      const btn = document.getElementById('codeTab-' + t);
-      if (t === type) btn.classList.add('tab-btn-active');
-      else btn.classList.remove('tab-btn-active');
-    });
-    const files = getExtractedFiles();
-    document.getElementById('codeViewerBox').textContent = files[type];
-  }
-
-  function copySelectedCode() {
-    const text = document.getElementById('codeViewerBox').textContent;
-    const tempArea = document.createElement('textarea');
-    tempArea.value = text;
-    document.body.appendChild(tempArea);
-    tempArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempArea);
-
-    const btn = document.getElementById('copyCodeBtn');
-    const orig = btn.textContent;
-    btn.textContent = 'Copied!';
-    setTimeout(() =&gt; { btn.textContent = orig; }, 1800);
-  }
-
-  function downloadSelectedCode() {
-    const files = getExtractedFiles();
-    const filenameMap = { html: 'index.html', css: 'style.css', js: 'script.js' };
-    const mimeMap = { html: 'text/html', css: 'text/css', js: 'application/javascript' };
-
-    const blob = new Blob([files[activeCodeTab]], { type: mimeMap[activeCodeTab] });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filenameMap[activeCodeTab];
-    a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  window.addEventListener('DOMContentLoaded', () =&gt; {
+  window.addEventListener('DOMContentLoaded', () => {
     recalculateEcosystem();
     recalculateCoin();
     renderArchTab();
     renderGovernanceAndRoadmap();
-  });</pre>
-    </div>
-  </div>
-</div>
-  <script src="script.js"></script>
+  });
+  /* ================= END SCRIPT.JS ================= */
+</script>
 </body>
 </html>
