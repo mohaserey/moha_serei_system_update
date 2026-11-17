@@ -11,7 +11,6 @@ let currentLang = 'km';
       nav_arch: 'ស្ថាបត្យកម្ម ៨ ស្រទាប់',
       nav_gov: 'អភិបាលកិច្ច & សវនកម្ម',
       nav_roadmap: 'ផែនទី 2026–2052',
-      btn_code: 'HTML / CSS / JS',
       hero_author: 'រៀបចំដោយ៖ ឯកឧត្តម មេណ្ឌ មុនី (H.E. Mend Mony) — អគ្គស្ថាបនិក និងជាប្រធានក្រុមប្រឹក្សាភិបាល',
       hero_kicker: 'ឯកសារស្ថាបនាប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី MSN',
       hero_title: 'Moha Serey Enterprise System Update (2026–2052)',
@@ -98,9 +97,6 @@ let currentLang = 'km';
       road_heading: 'ផែនទីបង្ហាញផ្លូវយុទ្ធសាស្ត្រ ៥ ដំណាក់កាល (២០២៦ – ២០៥២)',
       road_sub: 'ដំណើរវិវត្តន៍ជាប្រព័ន្ធពីការកសាងគ្រឹះស្ថាប័ន រហូតដល់ប្រព័ន្ធអេកូឡូស៊ីសេដ្ឋកិច្ចឌីជីថលថ្នាក់ជាតិដែលមានសមាជិកជាង ១០ លាននាក់។',
       footer_quote: '«មនុស្សគ្រប់រូបមានតម្លៃ។ រាល់ការចូលរួមមានតម្លៃ។» — រៀបចំដោយ ឯកឧត្តម មេណ្ឌ មុនី',
-      footer_export: 'ទាញយកកូដបំបែក (index.html, style.css, script.js)',
-      modal_title: 'កូដបំបែកឯករាជ្យ (Separate Project Files)',
-      modal_sub: 'ចម្លង ឬទាញយកឯកសារនីមួយៗដាច់ដោយឡែកសម្រាប់ដាក់ក្នុងគម្រោងរបស់អ្នក'
     },
     en: {
       nav_subtitle: 'Moha Serey Enterprise System (2026–2052)',
@@ -110,7 +106,6 @@ let currentLang = 'km';
       nav_arch: '8-Layer Architecture',
       nav_gov: 'Governance & Audit',
       nav_roadmap: '2026–2052 Roadmap',
-      btn_code: 'HTML / CSS / JS',
       hero_author: 'Prepared by: H.E. Mend Mony — Founder & Chairman of the Board of Directors',
       hero_kicker: 'MOHASEREI NETWORK (MSN) ENTERPRISE SYSTEM SPECIFICATION',
       hero_title: 'Moha Serey Enterprise System Update (2026–2052)',
