@@ -1,965 +1,515 @@
 <!DOCTYPE html>
-<html lang="km" class="scroll-smooth">
+<html lang="km">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moha Serey System Update (MSN 2026–2052) | ប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Kantumruy+Pro:wght@300;400;500;600;700&family=Moul&display=swap" rel="stylesheet">
-  <link rel="icon" href="mohaserey.jpg">
-  <style>
-    /* ================= STYLE.CSS ================= */
-    :root {
-      --msn-navy: #070d19;
-      --msn-slate: #0f172a;
-      --msn-card: #131d33;
-      --msn-border: rgba(212, 175, 55, 0.22);
-      --msn-gold: #d4af37;
-      --msn-gold-light: #f3d06b;
-      --msn-emerald: #10b981;
-      --msn-cyan: #06b6d4;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ប្រព័ន្ធគ្រប់គ្រងបណ្ដាញមហាសិរី - Moha Serey System Update (MSN)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1b4d3e;
+            --secondary-color: #d4af37;
+            --dark-color: #111827;
+            --light-color: #f9fafb;
+            --accent-color: #065f46;
+            --border-color: #e5e7eb;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Kantumruy Pro', sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: var(--dark-color);
+            display: flex;
+            min-height: 100vh;
+        }
+        /* Sidebar */
+        aside {
+            width: 280px;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        .brand-box {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.15);
+        }
+        .brand-box img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary-color);
+        }
+        .brand-box h1 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+        .brand-box p {
+            font-size: 0.75rem;
+            color: #d1d5db;
+        }
+        .nav-menu {
+            list-style: none;
+            padding: 15px 0;
+            flex-grow: 1;
+        }
+        .nav-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #e5e7eb;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        .nav-menu li a:hover, .nav-menu li a.active {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        /* Main Content */
+        main {
+            margin-left: 280px;
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        .user-profile i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+        /* Dashboard Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary-color);
+        }
+        .stat-card h3 {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+        .stat-card .value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        /* Sections & Forms */
+        .section-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .section-card h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+        .form-group input, .form-group select {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+        }
+        .btn-submit {
+            grid-column: 1 / -1;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+        }
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        tbody tr:hover {
+            background-color: #f1f5f9;
+        }
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-1 { background: #fee2e2; color: #991b1b; }
+        .badge-2 { background: #fef3c7; color: #92400e; }
+        .badge-3 { background: #e0e7ff; color: #3730a3; }
+        .badge-4 { background: #d1fae5; color: #065f46; }
+        .badge-5 { background: #fae8ff; color: #86198f; }
 
-    body {
-      font-family: 'Kantumruy Pro', 'Inter', sans-serif;
-      background-color: var(--msn-navy);
-      color: #e2e8f0;
-      overflow-x: hidden;
-    }
-
-    .font-moul {
-      font-family: 'Moul', serif;
-    }
-
-    .font-mono-code {
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .hero-bg {
-      background:
-        radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.14), transparent 42%),
-        radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.12), transparent 40%),
-        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.1), transparent 45%),
-        linear-gradient(180deg, #060b16 0%, #0b1324 60%, #070d19 100%);
-    }
-
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #fde68a 0%, #d4af37 50%, #f59e0b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .msn-glass {
-      background: rgba(19, 29, 51, 0.78);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.55);
-    }
-
-    .msn-glass-hover {
-      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .msn-glass-hover:hover {
-      border-color: rgba(212, 175, 55, 0.55);
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px -12px rgba(212, 175, 55, 0.16);
-    }
-
-    input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 6px;
-      border-radius: 999px;
-      background: #1e293b;
-      outline: none;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #fde68a, #d4af37);
-      border: 2px solid #0f172a;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.65);
-      transition: transform 0.15s ease;
-    }
-
-    input[type="range"]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
-    }
-
-    .tab-btn-active {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(245, 158, 11, 0.15));
-      border-color: #d4af37 !important;
-      color: #fde68a !important;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #070d19;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #27354f;
-      border-radius: 999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #d4af37;
-    }
-    /* ================= END STYLE.CSS ================= */
-  </style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
 </head>
-<body class="antialiased selection:bg-amber-400/30 selection:text-amber-200">
+<body>
 
-<!-- ================= INDEX.HTML ================= -->
-
-<!-- Sticky Top Navigation -->
-<header class="sticky top-0 z-40 border-b border-amber-500/20 bg-[#070d19]/90 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 md:h-20 gap-3">
-      <!-- Brand Identity -->
-      <a href="mohaserey.jpg" class="flex items-center gap-3 group min-w-0">
-        <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-br from-amber-300 via-amber-500 to-yellow-700 p-0.5 shrink-0 shadow-lg shadow-amber-500/20">
-          <div class="w-full h-full bg-[#091122] rounded-[10px] flex items-center justify-center">
-            <span class="font-moul text-amber-400 text-sm md:text-base">មហា</span>
-          </div>
-        </div>
-        <div class="truncate">
-          <div class="flex items-center gap-2">
-            <span class="font-bold text-white tracking-wide text-sm md:text-base truncate">MOHASEREI NETWORK</span>
-            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono-code font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-              V2.0 ENTERPRISE
-            </span>
-          </div>
-          <p class="text-[11px] text-amber-300/80 truncate" data-i18n="nav_subtitle">ប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី MSN (2026–2052)</p>
-        </div>
-      </a>
-
-      <!-- Desktop Anchor Links -->
-      <nav class="hidden xl:flex items-center gap-5 text-xs font-medium text-slate-300">
-        <a href="#constitution" class="hover:text-amber-300 transition" data-i18n="nav_charter">ធម្មនុញ្ញ & រដ្ឋធម្មនុញ្ញ</a>
-        <a href="#ues-simulator" class="hover:text-amber-300 transition" data-i18n="nav_ues">ម៉ាស៊ីនគណនា UES & HCV</a>
-        <a href="#coin-engine" class="hover:text-amber-300 transition" data-i18n="nav_coin">MSN Coin & ភាគលាភ</a>
-        <a href="#architecture" class="hover:text-amber-300 transition" data-i18n="nav_arch">ស្ថាបត្យកម្ម ៨ ស្រទាប់</a>
-        <a href="#governance" class="hover:text-amber-300 transition" data-i18n="nav_gov">អភិបាលកិច្ច & សវនកម្ម</a>
-        <a href="#roadmap" class="hover:text-amber-300 transition" data-i18n="nav_roadmap">ផែនទី 2026–2052</a>
-      </nav>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-2 shrink-0">
-        <!-- Language Switcher -->
-        <button onclick="toggleLanguage()" id="langToggleBtn" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-md shadow-amber-500/20 transition cursor-pointer">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
-          <span id="langBadgeText">English</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- Hero Section -->
-<section id="hero" class="hero-bg relative border-b border-amber-500/15 py-14 md:py-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Top Executive Attribution Pill -->
-    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-200 text-xs">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span data-i18n="hero_author">រៀបចំដោយ៖ ឯកឧត្តម មេណ្ឌ មុនី (H.E. Mend Mony) — អគ្គស្ថាបនិក និងជាប្រធានក្រុមប្រឹក្សាភិបាល</span>
-      </div>
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-300 text-xs font-mono-code">
-        <span>MSN-CHARTER-001 • MSN-EAB-001 • 98% ARCHITECTURE COMPLETE</span>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-      <div class="lg:col-span-7 space-y-6">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-white">
-          <span class="block text-amber-300 text-lg sm:text-xl font-semibold mb-2" data-i18n="hero_kicker">ឯកសារស្ថាបនាប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី MSN</span>
-          <span class="gold-gradient-text" data-i18n="hero_title">Moha Serey Enterprise System Update (2026–2052)</span>
-        </h1>
-
-        <p class="text-slate-300 text-base sm:text-lg leading-relaxed" data-i18n="hero_desc">
-          ប្រព័ន្ធសេដ្ឋកិច្ចឌីជីថលផ្អែកលើការចូលរួម (Participation-Based Economic Ecosystem) ដែលបម្លែងរាល់សកម្មភាពរបស់មនុស្ស ធុរកិច្ច ចំណេះដឹង បណ្តាញ និងសង្គម ទៅជាតម្លៃសេដ្ឋកិច្ចពិតប្រាកដ ក្រោមអភិបាលកិច្ចស្ថាប័ន តម្លាភាព និងសវនកម្ម ១០០%។
-        </p>
-
-        <!-- 3 Core Constitutional Principles -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-          <div class="msn-glass rounded-2xl p-4 border-l-4 border-l-amber-400">
-            <p class="text-[11px] font-mono-code text-amber-400 uppercase" data-i18n="prin_1_tag">គោលការណ៍ទី ១</p>
-            <h3 class="font-bold text-white text-sm mt-1" data-i18n="prin_1_title">មនុស្សគ្រប់រូបមានតម្លៃសេដ្ឋកិច្ច</h3>
-            <p class="text-xs text-slate-400 mt-1" data-i18n="prin_1_desc">សិស្ស កសិករ កម្មករ អាជីវករ អ្នកជំនាញ សុទ្ធតែអាចក្លាយជាម្ចាស់ទ្រព្យសកម្ម។</p>
-          </div>
-          <div class="msn-glass rounded-2xl p-4 border-l-4 border-l-emerald-400">
-            <p class="text-[11px] font-mono-code text-emerald-400 uppercase" data-i18n="prin_2_tag">គោលការណ៍ទី ២</p>
-            <h3 class="font-bold text-white text-sm mt-1" data-i18n="prin_2_title">MSN មិនលក់ការងារ</h3>
-            <p class="text-xs text-slate-400 mt-1" data-i18n="prin_2_desc">បង្កើតឱកាសកសាងតម្លៃ បណ្តាញ ទ្រព្យសកម្ម និងកម្មសិទ្ធិសេដ្ឋកិច្ចរួម។</p>
-          </div>
-          <div class="msn-glass rounded-2xl p-4 border-l-4 border-l-cyan-400">
-            <p class="text-[11px] font-mono-code text-cyan-400 uppercase" data-i18n="prin_3_tag">គោលការណ៍ទី ៣</p>
-            <h3 class="font-bold text-white text-sm mt-1" data-i18n="prin_3_title">ការចូលរួមទាំងអស់មានតម្លៃ</h3>
-            <p class="text-xs text-slate-400 mt-1" data-i18n="prin_3_desc">ទិញ លក់ សន្សំ វិនិយោគ បង្រៀន រៀន ស្ម័គ្រចិត្ត ត្រូវបម្លែងជា UES។</p>
-          </div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-3 pt-2">
-          <a href="#ues-simulator" class="px-5 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 hover:from-amber-300 hover:to-amber-500 shadow-lg shadow-amber-500/20 transition" data-i18n="cta_simulator">
-            សាកល្បងគណនា UES & Human Capital
-          </a>
-          <a href="#architecture" class="px-5 py-3 rounded-xl font-semibold text-sm bg-slate-800/90 hover:bg-slate-700 text-white border border-slate-600 transition" data-i18n="cta_blueprint">
-            មើលស្ថាបត្យកម្ម ៨ ស្រទាប់ (MSN-EAB-001)
-          </a>
-        </div>
-      </div>
-
-      <!-- Right KPI Summary Panel -->
-      <div class="lg:col-span-5">
-        <div class="msn-glass rounded-3xl p-6 sm:p-7 space-y-5 relative overflow-hidden">
-          <div class="flex items-center justify-between border-b border-slate-700/80 pb-4">
+    <!-- Sidebar Menu -->
+    <aside>
+        <div class="brand-box">
+            <img src="mohaserey.jpg" alt="Moha Serey Logo" onerror="this.src='https://via.placeholder.com/50?text=MSN'">
             <div>
-              <span class="text-xs font-mono-code text-amber-400">ULTIMATE 2052 NATIONAL TARGETS</span>
-              <h2 class="text-lg font-bold text-white mt-0.5" data-i18n="kpi_panel_title">ទិសដៅយុទ្ធសាស្ត្រជាតិ MSN ឆ្នាំ ២០៥២</h2>
+                <h1>បណ្ដាញមហាសិរី</h1>
+                <p>Moha Serey System (MSN)</p>
             </div>
-            <span class="px-2.5 py-1 rounded-lg bg-amber-400/15 text-amber-300 font-mono-code text-xs font-bold">26 YRS</span>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3.5">
-            <div class="bg-[#0a1120] border border-slate-800 rounded-2xl p-4">
-              <p class="text-xs text-slate-400" data-i18n="kpi_members">សមាជិកសរុប (Members)</p>
-              <p class="text-2xl sm:text-3xl font-extrabold text-amber-400 mt-1 font-mono-code">10M+</p>
-              <p class="text-[11px] text-emerald-400 mt-1" data-i18n="kpi_members_sub">គ្របដណ្តប់ទូទាំងប្រទេស</p>
-            </div>
-            <div class="bg-[#0a1120] border border-slate-800 rounded-2xl p-4">
-              <p class="text-xs text-slate-400" data-i18n="kpi_partners">ដៃគូអាជីវកម្ម (Partners)</p>
-              <p class="text-2xl sm:text-3xl font-extrabold text-cyan-400 mt-1 font-mono-code">780K+</p>
-              <p class="text-[11px] text-slate-400 mt-1" data-i18n="kpi_partners_sub">ហាង កសិករ រោងចក្រ SMEs</p>
-            </div>
-            <div class="bg-[#0a1120] border border-slate-800 rounded-2xl p-4">
-              <p class="text-xs text-slate-400" data-i18n="kpi_layers">ស្រទាប់ស្ថាបត្យកម្ម</p>
-              <p class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1 font-mono-code">8 Layers</p>
-              <p class="text-[11px] text-slate-400 mt-1">MSN-EAB-001 Blueprint</p>
-            </div>
-            <div class="bg-[#0a1120] border border-slate-800 rounded-2xl p-4">
-              <p class="text-xs text-slate-400" data-i18n="kpi_hierarchy">ឋានានុក្រមឯកសារកំពូល</p>
-              <p class="text-2xl sm:text-3xl font-extrabold text-purple-400 mt-1 font-mono-code">10 Levels</p>
-              <p class="text-[11px] text-slate-400 mt-1">Charter → Operations</p>
-            </div>
-          </div>
-
-          <!-- Core Formula Banner -->
-          <div class="bg-gradient-to-r from-amber-500/15 via-slate-900 to-cyan-500/15 border border-amber-400/30 rounded-2xl p-4">
-            <p class="text-[11px] font-mono-code text-amber-300 uppercase mb-1">ECO-001 • UNIVERSAL ECONOMIC SCORE</p>
-            <p class="text-xs sm:text-sm font-mono-code text-white leading-relaxed">
-              UES = Financial + Business + Knowledge + Network + Leadership + Social
-            </p>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <ul class="nav-menu">
+            <li><a href="#" class="nav-link active" onclick="switchTab('dashboard', event)"><i class="fas fa-chart-pie"></i> ទិដ្ឋភាពទូទៅ (Dashboard)</a></li>
+            <li><a href="#" class="nav-link" onclick="switchTab('registration', event)"><i class="fas fa-user-plus"></i> ចុះឈ្មោះសមាជិកបណ្ដាញ</a></li>
+            <li><a href="#" class="nav-link" onclick="switchTab('members', event)"><i class="fas fa-users"></i> បញ្ជីសមាជិកទូទាំងប្រទេស</a></li>
+            <li><a href="#" class="nav-link" onclick="switchTab('economy', event)"><i class="fas fa-coins"></i> កម្រិតសេដ្ឋកិច្ច និងពិន្ទុ (UES)</a></li>
+        </ul>
+    </aside>
 
-<!-- Section 1: Interactive Universal Economic Score (UES) & Human Capital Value (HCV) Simulator -->
-<section id="ues-simulator" class="py-16 md:py-20 border-b border-slate-800/80">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mb-10">
-      <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-amber-400">MSN-ECO-001 • MSN-HCM-001 • MSN-RANK-001</span>
-      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="sim_heading">ម៉ាស៊ីនគណនាតម្លៃសេដ្ឋកិច្ចសកល (UES) និងមូលធនមនុស្ស (HCV)</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="sim_sub">
-        កែតម្រូវសកម្មភាពចូលរួមទាំង ៥ ប្រភេទខាងក្រោម ដើម្បីមើលការគណនាពិន្ទុស្វ័យប្រវត្តិ តំណែងដឹកនាំ (Career Rank) កម្រិតអត្ថប្រយោជន៍ និងចំណែកកម្មសិទ្ធិសេដ្ឋកិច្ចរបស់សមាជិក។
-      </p>
-    </div>
+    <!-- Main Content Area -->
+    <main>
+        <header>
+            <h2 id="page-title">ទិដ្ឋភាពទូទៅ និងរចនាសម្ព័ន្ធសេដ្ឋកិច្ចសង្គម</h2>
+            <div class="user-profile">
+                <i class="fas fa-user-shield"></i>
+                <span>អគ្គស្ថាបនិក (Admin)</span>
+            </div>
+        </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <!-- Left Inputs (7 cols) -->
-      <div class="lg:col-span-7 space-y-5">
-        <!-- 1. Financial Capital -->
-        <div class="msn-glass rounded-2xl p-5">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="font-bold text-amber-300 text-sm sm:text-base flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center text-xs font-mono-code">F</span>
-              <span data-i18n="cat_fin">១. ហិរញ្ញធន & ធនអាជីវកម្ម (Financial & Business Activity)</span>
-            </h3>
-            <span class="font-mono-code text-xs text-amber-300 font-bold" id="finPointsBadge">0 pts</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_savings">ប្រាក់សន្សំ ($1 = 1 pt)</span>
-                <span class="font-mono-code text-white font-semibold">$<span id="val_savings">500</span></span>
-              </div>
-              <input type="range" id="in_savings" min="0" max="10000" step="50" value="500" oninput="recalculateEcosystem()">
+        <!-- Tab 1: Dashboard -->
+        <div id="dashboard" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>សមាជិកសរុប</h3>
+                    <div class="value" id="total-members-count">1,250 នាក់</div>
+                </div>
+                <div class="stat-card">
+                    <h3>ខេត្ត រាជធានីគ្របដណ្តប់</h3>
+                    <div class="value">25 / 25</div>
+                </div>
+                <div class="stat-card">
+                    <h3>ប្រភេទចូលរួមសកម្ម</h3>
+                    <div class="value">5 ប្រភេទ</div>
+                </div>
+                <div class="stat-card">
+                    <h3>សន្ទស្សន៍ເສដ្ឋកិច្ចរួម (UES)</h3>
+                    <div class="value">48,500 ពិន្ទុ</div>
+                </div>
             </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_purchase">ការទិញទំនិញ ($1 = 1 pt)</span>
-                <span class="font-mono-code text-white font-semibold">$<span id="val_purchase">800</span></span>
-              </div>
-              <input type="range" id="in_purchase" min="0" max="10000" step="50" value="800" oninput="recalculateEcosystem()">
+
+            <div class="section-card">
+                <h3><i class="fas fa-chart-bar"></i> ការចែកចាយសមាជិកតាមប្រភេទចូលរួមទាំង ៥</h3>
+                <div style="width: 100%; max-width: 500px; margin: 0 auto;">
+                    <canvas id="participationChart"></canvas>
+                </div>
             </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_revenue">ការលក់/អាជីវកម្ម ($1 = 2 pts)</span>
-                <span class="font-mono-code text-white font-semibold">$<span id="val_revenue">1200</span></span>
-              </div>
-              <input type="range" id="in_revenue" min="0" max="20000" step="100" value="1200" oninput="recalculateEcosystem()">
-            </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_invest">ការវិនិយោគ ($1 = 3 pts)</span>
-                <span class="font-mono-code text-white font-semibold">$<span id="val_invest">1000</span></span>
-              </div>
-              <input type="range" id="in_invest" min="0" max="25000" step="100" value="1000" oninput="recalculateEcosystem()">
-            </div>
-          </div>
         </div>
 
-        <!-- 2. Knowledge & Training Activity -->
-        <div class="msn-glass rounded-2xl p-5">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="font-bold text-cyan-300 text-sm sm:text-base flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-xs font-mono-code">K</span>
-              <span data-i18n="cat_know">២. ធនចំណេះដឹង (Knowledge & MSN Academy)</span>
-            </h3>
-            <span class="font-mono-code text-xs text-cyan-300 font-bold" id="knowPointsBadge">0 pts</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_train">រៀនវគ្គបណ្តុះបណ្តាល (20pts/hr)</span>
-                <span class="font-mono-code text-white font-semibold"><span id="val_train">15</span> hrs</span>
-              </div>
-              <input type="range" id="in_train" min="0" max="200" step="1" value="15" oninput="recalculateEcosystem()">
+        <!-- Tab 2: Registration Form -->
+        <div id="registration" class="tab-content">
+            <div class="section-card">
+                <h3><i class="fas fa-user-edit"></i> បញ្ចូលទិន្នន័យសមាជិកបណ្ដាញតាមមូលដ្ឋាន និងប្រភេទចូលរួម</h3>
+                <form id="memberForm" class="form-grid" onsubmit="addMember(event)">
+                    <div class="form-group">
+                        <label>ឈ្មោះពេញ (Full Name)</label>
+                        <input type="text" id="fullName" required placeholder="បញ្ចូលឈ្មោះសមាជិក">
+                    </div>
+                    <div class="form-group">
+                        <label>លេខទូរសព្ទ (Phone Number)</label>
+                        <input type="text" id="phone" required placeholder="012 345 678">
+                    </div>
+                    <div class="form-group">
+                        <label>រាជធានី / ខេត្ត</label>
+                        <select id="province" required onchange="updateDistricts()">
+                            <option value="">-- ជ្រើសរើសខេត្ត រាជធានី --</option>
+                            <option value="រាជធានីភ្នំពេញ">រាជធានីភ្នំពេញ</option>
+                            <option value="ខេត្តសៀមរាប">ខេត្តសៀមរាប</option>
+                            <option value="ខេត្តបាត់ដំបង">ខេត្តបាត់ដំបង</option>
+                            <option value="ខេត្តកណ្ដាល">ខេត្តកណ្ដាល</option>
+                            <option value="ខេត្តព្រះសីហនុ">ខេត្តព្រះសីហនុ</option>
+                            <option value="ខេត្តកំពង់ចាម">ខេត្តកំពង់ចាម</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ស្រុក / ខណ្ឌ / ក្រុង</label>
+                        <input type="text" id="district" required placeholder="ឈ្មោះ ស្រុក ឬ ខណ្ឌ">
+                    </div>
+                    <div class="form-group">
+                        <label>ឃុំ / សង្កាត់</label>
+                        <input type="text" id="commune" required placeholder="ឈ្មោះ ឃុំ ឬ សង្កាត់">
+                    </div>
+                    <div class="form-group">
+                        <label>ប្រភេទចូលរួម (Participation Category)</label>
+                        <select id="category" required>
+                            <option value="">-- ជ្រើសរើសប្រភេទចូលរួម --</option>
+                            <option value="១. កម្លាំងពលកម្ម + ពេលវេលា (លក់/ដឹកជញ្ជូនផ្ទាល់)">១. កម្លាំងពលកម្ម + ពេលវេលា (លក់/ដឹកជញ្ជូនផ្ទាល់)</option>
+                            <option value="២. ចំណេះជំនាញ (គណនេយ្យ/បណ្ដុះបណ្ដាល/បច្ចេកវិទ្យា/បច្ចេកទេស)">២. ចំណេះជំនាញ (គណនេយ្យ/បណ្ដុះបណ្ដាល/បច្ចេកវិទ្យា/បច្ចេកទេស)</option>
+                            <option value="៣. ធនធាន (ទ្រព្យសម្បត្តិ + ហិរញ្ញវត្ថុ)">៣. ធនធាន (ទ្រព្យសម្បត្តិ + ហិរញ្ញវត្ថុ)</option>
+                            <option value="៤. បណ្ដាញទំនាក់ទំនង (ធនធានមនុស្ស + អាជីវកម្ម)">៤. បណ្ដាញទំនាក់ទំនង (ធនធានមនុស្ស + អាជីវកម្ម)</option>
+                            <option value="៥. ម្ចាស់អាជីវកម្ម (តូប/សិប្បកម្ម/សហគមន៍/សហគ្រាស/រោងចក្រ)">៥. ម្ចាស់អាជីវកម្ម (តូប/សិប្បកម្ម/សហគមន៍/សហគ្រាស/រោងចក្រ)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit"><i class="fas fa-save"></i> រក្សាទុក និងចុះឈ្មោះសមាជិកបណ្ដាញ</button>
+                </form>
             </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_teach">បង្រៀន/ណែនាំ (30pts/hr)</span>
-                <span class="font-mono-code text-white font-semibold"><span id="val_teach">10</span> hrs</span>
-              </div>
-              <input type="range" id="in_teach" min="0" max="200" step="1" value="10" oninput="recalculateEcosystem()">
-            </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_content">បង្កើតមាតិកាចំណេះដឹង (50pts)</span>
-                <span class="font-mono-code text-white font-semibold"><span id="val_content">4</span></span>
-              </div>
-              <input type="range" id="in_content" min="0" max="100" step="1" value="4" oninput="recalculateEcosystem()">
-            </div>
-          </div>
         </div>
 
-        <!-- 3. Network & Social Activity -->
-        <div class="msn-glass rounded-2xl p-5">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="font-bold text-emerald-300 text-sm sm:text-base flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs font-mono-code">N+S</span>
-              <span data-i18n="cat_netsoc">៣. ធនបណ្តាញ & ធនសង្គម (Network & Social Capital)</span>
-            </h3>
-            <span class="font-mono-code text-xs text-emerald-300 font-bold" id="netSocPointsBadge">0 pts</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_newmem">ណែនាំសមាជិកថ្មី (100pts/នាក់)</span>
-                <span class="font-mono-code text-white font-semibold"><span id="val_newmem">25</span></span>
-              </div>
-              <input type="range" id="in_newmem" min="0" max="500" step="1" value="25" oninput="recalculateEcosystem()">
+        <!-- Tab 3: Members List -->
+        <div id="members" class="tab-content">
+            <div class="section-card">
+                <h3><i class="fasNav fa-address-book"></i> បញ្ជីសមាជិកបណ្ដាញទូទាំងប្រទេសតាមតំបន់</h3>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ល.រ</th>
+                                <th>ឈ្មោះសមាជិក</th>
+                                <th>ទូរសព្ទ</th>
+                                <th>ទីតាំង (រាជធានី/ខេត្ត - ស្រុក/ខណ្ឌ - ឃុំ/សង្កាត់)</th>
+                                <th>ប្រភេទចូលរួម</th>
+                            </tr>
+                        </thead>
+                        <tbody id="memberTableBody">
+                            <tr>
+                                <td>1</td>
+                                <td>សុខ ចាន់ណា</td>
+                                <td>012 333 444</td>
+                                <td>រាជធានីភ្នំពេញ - ខណ្ឌចំការមន - សង្កាត់ទន្លេបាសាក់</td>
+                                <td><span class="badge badge-1">១. កម្លាំងពលកម្ម + ពេលវេលា</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>ម៉េង វុទ្ធី</td>
+                                <td>011 555 666</td>
+                                <td>ខេត្តសៀមរាប - ក្រុងសៀមរាប - សង្កាត់ស្លក្រាម</td>
+                                <td><span class="badge badge-2">២. ចំណេះជំនាញ</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>គឹម ស្រីលក្ខណ៍</td>
+                                <td>098 777 888</td>
+                                <td>ខេត្តកណ្ដាល - ក្រុងតាខ្មៅ - សង្កាត់ដើមអំពិល</td>
+                                <td><span class="badge badge-5">៥. ម្ចាស់អាជីវកម្ម</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_actmem">សមាជិកសកម្មក្នុងក្រុម (50pts/នាក់)</span>
-                <span class="font-mono-code text-white font-semibold"><span id="val_actmem">40</span></span>
-              </div>
-              <input type="range" id="in_actmem" min="0" max="1000" step="5" value="40" oninput="recalculateEcosystem()">
-            </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_leadact">ដឹកនាំសកម្មភាព/គម្រោង (200pts)</span>
-                <span class="font-mono-code text-white font-semibold"><span id="val_leadact">8</span></span>
-              </div>
-              <input type="range" id="in_leadact" min="0" max="200" step="1" value="8" oninput="recalculateEcosystem()">
-            </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-300" data-i18n="lbl_csr">ការងារស្ម័គ្រចិត្ត & CSR (100pts)</span>
-                <span class="font-mono-code text-white font-semibold"><span id="val_csr">12</span></span>
-              </div>
-              <input type="range" id="in_csr" min="0" max="200" step="1" value="12" oninput="recalculateEcosystem()">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Live Economic Passport Output (5 cols) -->
-      <div class="lg:col-span-5">
-        <div class="msn-glass rounded-3xl p-6 border-2 border-amber-400/40 sticky top-24 space-y-5">
-          <div class="flex items-center justify-between border-b border-slate-700/80 pb-4">
-            <div>
-              <span class="text-[11px] font-mono-code text-amber-400">ECO-002 • DIGITAL ECONOMIC PASSPORT</span>
-              <h3 class="text-lg font-bold text-white" data-i18n="passport_title">លិខិតឆ្លងដែនសេដ្ឋកិច្ចសមាជិក</h3>
-            </div>
-            <span id="benefitTierBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/40">
-              GOLD TIER
-            </span>
-          </div>
-
-          <!-- Big Score Display -->
-          <div class="bg-[#080e1c] rounded-2xl p-5 border border-slate-800 text-center">
-            <p class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="ues_total_lbl">ពិន្ទុសេដ្ឋកិច្ចសកល (Universal Economic Score)</p>
-            <p id="uesTotalDisplay" class="text-4xl sm:text-5xl font-extrabold gold-gradient-text font-mono-code my-2">0</p>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
-              <span data-i18n="rank_lbl">តំណែងស្វ័យប្រវត្តិ៖</span>
-              <span id="careerRankDisplay" class="font-bold">Coordinator</span>
-            </div>
-          </div>
-
-          <!-- Progress to Next Rank -->
-          <div>
-            <div class="flex justify-between text-xs mb-1.5">
-              <span class="text-slate-400" data-i18n="next_rank_lbl">វឌ្ឍនភាពទៅកាន់តំណែងបន្ទាប់៖</span>
-              <span class="font-mono-code text-amber-300" id="nextRankTargetText">50,000 pts (Supervisor)</span>
-            </div>
-            <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="rankProgressBar" class="h-full bg-gradient-to-r from-amber-400 via-emerald-400 to-cyan-400 rounded-full transition-all duration-300" style="width: 35%;"></div>
-            </div>
-          </div>
-
-          <!-- HCV & Ownership Breakdown -->
-          <div class="grid grid-cols-2 gap-3">
-            <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800">
-              <p class="text-[11px] text-slate-400" data-i18n="hcv_lbl">តម្លៃមូលធនមនុស្ស (HCV)</p>
-              <p id="hcvScoreDisplay" class="text-xl font-bold text-cyan-300 font-mono-code mt-0.5">0</p>
-              <p class="text-[10px] text-slate-500">F25% B25% K20% N20% S10%</p>
-            </div>
-            <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800">
-              <p class="text-[11px] text-slate-400" data-i18n="reward_share_lbl">ចំណែកភាគលាភប៉ាន់ស្មាន</p>
-              <p id="rewardShareDisplay" class="text-xl font-bold text-emerald-400 font-mono-code mt-0.5">$0.00</p>
-              <p class="text-[10px] text-slate-500" data-i18n="reward_pool_note">ពី Reward Pool $100,000</p>
-            </div>
-          </div>
-
-          <!-- Unlocked Benefits List -->
-          <div class="bg-[#0a1120] p-4 rounded-2xl border border-slate-800">
-            <p class="text-xs font-semibold text-amber-300 mb-2" data-i18n="benefits_unlocked_lbl">សិទ្ធិ និងអត្ថប្រយោជន៍ដែលទទួលបាន (MSN-BEN-001):</p>
-            <ul id="unlockedBenefitsList" class="text-xs text-slate-300 space-y-1.5">
-              <!-- Populated by JS -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Section 2: Dynamic MSN Coin Valuation & Value Allocation Policy -->
-<section id="coin-engine" class="py-16 md:py-20 bg-[#091020] border-b border-slate-800/80">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mb-10">
-      <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-cyan-400">MSN-COIN-002 • MSN-EAB-002 • MSN-FIN-004</span>
-      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="coin_heading">ម៉ាស៊ីនគណនាតម្លៃកាក់ MSN ថាមវន្ត និងការបែងចែកផលចំណេញ</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="coin_sub">
-        តម្លៃកាក់ MSN មិនកំណត់ដោយបុគ្គលឬ Admin ទេ ប៉ុន្តែគណនាដោយស្វ័យប្រវត្តិពីទ្រព្យសកម្មបម្រុងពិតប្រាកដ ÷ ចំនួនកាក់ផ្គត់ផ្គង់សរុប។
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      <!-- Left: MSN Coin Reserve Calculator -->
-      <div class="lg:col-span-6 msn-glass rounded-3xl p-6 sm:p-7 space-y-5">
-        <div class="flex items-center justify-between">
-          <h3 class="font-bold text-white text-base sm:text-lg" data-i18n="coin_calc_title">ការគណនាតម្លៃ MSN Coin ផ្ទាល់ (Real-Time Valuation)</h3>
-          <span class="px-2.5 py-1 rounded-md bg-cyan-500/15 text-cyan-300 font-mono-code text-xs">MSN-COIN-002</span>
         </div>
 
-        <div class="space-y-4">
-          <div>
-            <div class="flex justify-between text-xs mb-1">
-              <span class="text-slate-300" data-i18n="lbl_asset_res">ទ្រព្យសកម្មបម្រុង (Asset Reserve)</span>
-              <span class="font-mono-code text-amber-300 font-bold">$<span id="val_asset_res">15,000,000</span></span>
+        <!-- Tab 4: Economy & UES -->
+        <div id="economy" class="tab-content">
+            <div class="section-card">
+                <h3><i class="fas fa-atom"></i> ប្រព័ន្ធគណនាតម្លៃសេដ្ឋកិច្ចសកល (Universal Economic Score - UES)</h3>
+                <p style="margin-bottom: 15px; line-height: 1.6;">
+                    គ្រប់សកម្មភាព ការចូលរួម និងការបែងចែកធនធានទាំងអស់ ត្រូវបានគណនាដោយស្វ័យប្រវត្តិផ្អែកលើរដ្ឋធម្មនុញ្ញសេដ្ឋកិច្ច MSN ក្នុងគោលបំណងធានាតម្លាភាព និងភាពយុត្តិធម៌។
+                </p>
+                <ul style="padding-left: 20px; line-height: 1.8;">
+                    <li><strong>Financial Capital (FC - 25%):</strong> ការសន្សំ ការទិញ និងការវិនិយោគ។</li>
+                    <li><strong>Business Capital (BC - 25%):</strong> ការលក់ ការផ្គត់ផ្គង់ និងការបង្កើតអាជីវកម្ម។</li>
+                    <li><strong>Knowledge Capital (KC - 20%):</strong> ការបង្រៀន ការបណ្ដុះបណ្ដាល និងការបង្កើតមាតិកា។</li>
+                    <li><strong>Network Capital (NC - 20%):</strong> ការអភិវឌ្ឍ និងការពង្រីកបណ្ដាញសមាជិក។</li>
+                    <li><strong>Social Capital (SC - 10%):</strong> ការងារស្ម័គ្រចិត្ត និងការអភិវឌ្ឍសហគមន៍។</li>
+                </ul>
             </div>
-            <input type="range" id="in_asset_res" min="1000000" max="100000000" step="1000000" value="15000000" oninput="recalculateCoin()">
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs mb-1">
-              <span class="text-slate-300" data-i18n="lbl_cash_res">សាច់ប្រាក់បម្រុង (Cash Reserve)</span>
-              <span class="font-mono-code text-emerald-300 font-bold">$<span id="val_cash_res">8,000,000</span></span>
-            </div>
-            <input type="range" id="in_cash_res" min="500000" max="50000000" step="500000" value="8000000" oninput="recalculateCoin()">
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs mb-1">
-              <span class="text-slate-300" data-i18n="lbl_inv_res">មូលនិធិវិនិយោគបម្រុង (Investment Reserve)</span>
-              <span class="font-mono-code text-cyan-300 font-bold">$<span id="val_inv_res">12,000,000</span></span>
-            </div>
-            <input type="range" id="in_inv_res" min="1000000" max="80000000" step="1000000" value="12000000" oninput="recalculateCoin()">
-          </div>
-
-          <div>
-            <div class="flex justify-between text-xs mb-1">
-              <span class="text-slate-300" data-i18n="lbl_coin_supply">ការផ្គត់ផ្គង់កាក់សរុប (Total Coin Supply)</span>
-              <span class="font-mono-code text-purple-300 font-bold"><span id="val_coin_supply">25,000,000</span> MSN</span>
-            </div>
-            <input type="range" id="in_coin_supply" min="5000000" max="200000000" step="1000000" value="25000000" oninput="recalculateCoin()">
-          </div>
         </div>
+    </main>
 
-        <div class="bg-[#070d19] border border-cyan-500/30 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <p class="text-xs text-slate-400" data-i18n="coin_price_lbl">តម្លៃ 1 MSN Coin បច្ចុប្បន្ន</p>
-            <p id="coinPriceDisplay" class="text-3xl sm:text-4xl font-extrabold text-cyan-300 font-mono-code mt-1">$1.4000</p>
-          </div>
-          <div class="text-left sm:text-right text-xs text-slate-400 space-y-1">
-            <p><span data-i18n="total_res_lbl">ទ្រព្យបម្រុងសរុប៖</span> <strong class="text-white font-mono-code" id="totalReserveDisplay">$35,000,000</strong></p>
-            <p class="text-emerald-400">✓ Real-Time Coin Valuation</p>
-            <p class="text-amber-300">✓ Monthly Independent Coin Audit</p>
-          </div>
-        </div>
-      </div>
+    <!-- JavaScript for Interactivity -->
+    <script>
+        function switchTab(tabId, event) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            if(event) {
+                event.currentTarget.classList.add('active');
+            }
+        }
 
-      <!-- Right: Value Allocation Policy (35 / 20 / 20 / 10 / 10 / 5) -->
-      <div class="lg:col-span-6 msn-glass rounded-3xl p-6 sm:p-7 space-y-5">
-        <div class="flex items-center justify-between">
-          <h3 class="font-bold text-white text-base sm:text-lg" data-i18n="alloc_title">គោលនយោបាយបែងចែកប្រាក់ចំណេញសុទ្ធ (Value Allocation)</h3>
-          <span class="px-2.5 py-1 rounded-md bg-amber-500/15 text-amber-300 font-mono-code text-xs">100% NET VALUE</span>
-        </div>
+        // Sample dynamic storage for added members
+        let membersData = [
+            { name: "សុខ ចាន់ណា", phone: "012 333 444", location: "រាជធានីភ្នំពេញ - ខណ្ឌចំការមន - សង្កាត់ទន្លេបាសាក់", category: "១. កម្លាំងពលកម្ម + ពេលវេលា (លក់/ដឹកជញ្ជូនផ្ទាល់)", badgeClass: "badge-1" },
+            { name: "ម៉េង វុទ្ធី", phone: "011 555 666", location: "ខេត្តសៀមរាប - ក្រុងសៀមរាប - សង្កាត់ស្លក្រាម", category: "២. ចំណេះជំនាញ (គណនេយ្យ/បណ្ដុះបណ្ដាល/បច្ចេកវិទ្យា/បច្ចេកទេស)", badgeClass: "badge-2" },
+            { name: "គឹម ស្រីលក្ខណ៍", phone: "098 777 888", location: "ខេត្តកណ្ដាល - ក្រុងតាខ្មៅ - សង្កាត់ដើមអំពិល", category: "៥. ម្ចាស់អាជីវកម្ម (តូប/សិប្បកម្ម/សហគមន៍/សហគ្រាស/រោងចក្រ)", badgeClass: "badge-5" }
+        ];
 
-        <p class="text-xs sm:text-sm text-slate-300" data-i18n="alloc_desc">
-          រាល់ប្រាក់ចំណេញសុទ្ធដែលប្រព័ន្ធបង្កើតបាន ត្រូវបានបែងចែកដោយស្វ័យប្រវត្តិតាមរូបមន្តតម្លាភាព ៦ ចំណែក៖
-        </p>
+        function addMember(event) {
+            event.preventDefault();
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const province = document.getElementById('province').value;
+            const district = document.getElementById('district').value;
+            const commune = document.getElementById('commune').value;
+            const category = document.getElementById('category').value;
 
-        <!-- Stacked Visual Bar -->
-        <div class="w-full h-5 rounded-full overflow-hidden flex bg-slate-800 p-0.5 gap-0.5">
-          <div style="width: 35%" class="bg-amber-400 rounded-l-full" title="35% Business Expansion"></div>
-          <div style="width: 20%" class="bg-emerald-400" title="20% Member Distribution"></div>
-          <div style="width: 20%" class="bg-cyan-400" title="20% Strategic Reserve"></div>
-          <div style="width: 10%" class="bg-indigo-400" title="10% Technology Fund"></div>
-          <div style="width: 10%" class="bg-purple-400" title="10% Human Capital"></div>
-          <div style="width: 5%" class="bg-rose-400 rounded-r-full" title="5% Community Development"></div>
-        </div>
+            let badgeClass = "badge-3";
+            if(category.includes("១.")) badgeClass = "badge-1";
+            else if(category.includes("២.")) badgeClass = "badge-2";
+            else if(category.includes("៣.")) badgeClass = "badge-3";
+            else if(category.includes("៤.")) badgeClass = "badge-4";
+            else if(category.includes("៥.")) badgeClass = "badge-5";
 
-        <!-- 6 Allocation Items Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-          <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <span class="w-3 h-3 rounded-full bg-amber-400 shrink-0"></span>
-              <span class="text-xs text-slate-200 font-medium" data-i18n="alloc_1">មូលនិធិពង្រីកអាជីវកម្ម</span>
-            </div>
-            <span class="font-mono-code font-bold text-amber-300 text-sm">35%</span>
-          </div>
+            const newMember = {
+                name: name,
+                phone: phone,
+                location: `${province} - ${district} - ${commune}`,
+                category: category,
+                badgeClass: badgeClass
+            };
 
-          <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <span class="w-3 h-3 rounded-full bg-emerald-400 shrink-0"></span>
-              <span class="text-xs text-slate-200 font-medium" data-i18n="alloc_2">មូលនិធិចែកជូនសមាជិក</span>
-            </div>
-            <span class="font-mono-code font-bold text-emerald-300 text-sm">20%</span>
-          </div>
+            membersData.push(newMember);
+            renderTable();
+            alert("✅ បានចុះឈ្មោះសមាជិកបណ្ដាញជោគជ័យ!");
+            document.getElementById('memberForm').reset();
+            switchTab('members', null);
+            document.querySelectorAll('.nav-link')[2].classList.add('active');
+            document.querySelectorAll('.nav-link')[0].classList.remove('active');
+        }
 
-          <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <span class="w-3 h-3 rounded-full bg-cyan-400 shrink-0"></span>
-              <span class="text-xs text-slate-200 font-medium" data-i18n="alloc_3">មូលនិធិបម្រុងយុទ្ធសាស្ត្រ</span>
-            </div>
-            <span class="font-mono-code font-bold text-cyan-300 text-sm">20%</span>
-          </div>
+        function renderTable() {
+            const tbody = document.getElementById('memberTableBody');
+            tbody.innerHTML = "";
+            membersData.forEach((m, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${m.name}</td>
+                        <td>${m.phone}</td>
+                        <td>${m.location}</td>
+                        <td><span class="badge ${m.badgeClass}">${m.category}</span></td>
+                    </tr>
+                `;
+            });
+            document.getElementById('total-members-count').innerText = (1250 + membersData.length) + " នាក់";
+        }
 
-          <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <span class="w-3 h-3 rounded-full bg-indigo-400 shrink-0"></span>
-              <span class="text-xs text-slate-200 font-medium" data-i18n="alloc_4">មូលនិធិបច្ចេកវិទ្យា</span>
-            </div>
-            <span class="font-mono-code font-bold text-indigo-300 text-sm">10%</span>
-          </div>
-
-          <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <span class="w-3 h-3 rounded-full bg-purple-400 shrink-0"></span>
-              <span class="text-xs text-slate-200 font-medium" data-i18n="alloc_5">មូលនិធិអភិវឌ្ឍធនធានមនុស្ស</span>
-            </div>
-            <span class="font-mono-code font-bold text-purple-300 text-sm">10%</span>
-          </div>
-
-          <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <span class="w-3 h-3 rounded-full bg-rose-400 shrink-0"></span>
-              <span class="text-xs text-slate-200 font-medium" data-i18n="alloc_6">មូលនិធិអភិវឌ្ឍសហគមន៍</span>
-            </div>
-            <span class="font-mono-code font-bold text-rose-300 text-sm">5%</span>
-          </div>
-        </div>
-
-        <!-- Investment Sectors -->
-        <div class="pt-2 border-t border-slate-800">
-          <p class="text-[11px] font-mono-code text-slate-400 mb-2">MSN-INV-003 • APPROVED INVESTMENT SECTORS</p>
-          <div class="flex flex-wrap gap-2 text-xs">
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_agri">កសិកម្ម & កសិ-ឧស្សាហកម្ម</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_ret">ពាណិជ្ជកម្ម & ដឹកជញ្ជូន</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_mfg">ផលិតកម្ម & កែច្នៃ</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_tech">បច្ចេកវិទ្យា & FinTech</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700" data-i18n="sec_re">អចលនទ្រព្យ & ថាមពលបៃតង</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Section 3: 8-Layer Enterprise Architecture & Master Document Explorer -->
-<section id="architecture" class="py-16 md:py-20 border-b border-slate-800/80">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mb-10">
-      <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-amber-400">MSN-EAB-001 • MSN-DIGI-001 • MSN-EAM-001</span>
-      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="arch_heading">ស្ថាបត្យកម្មសហគ្រាស ៨ ស្រទាប់ និងប្រព័ន្ធកម្មវិធីកំពូល</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="arch_sub">
-        គ្មាន Module ណាមួយត្រូវបានអនុញ្ញាតឱ្យអភិវឌ្ឍ ឬដាក់ឱ្យប្រើប្រាស់ឡើយ ប្រសិនបើមិនស្របតាម MSN Enterprise Blueprint និង MSN Master Charter។
-      </p>
-    </div>
-
-    <!-- Interactive Architecture Tabs -->
-    <div class="flex flex-wrap gap-2 mb-6" id="archTabs">
-      <button onclick="switchArchTab('layers8')" id="tab-layers8" class="tab-btn-active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_8layers">
-        ស្ថាបត្យកម្ម ៨ ស្រទាប់ (8 Enterprise Layers)
-      </button>
-      <button onclick="switchArchTab('superapp')" id="tab-superapp" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_superapp">
-        MSN Super App & 6 Application Tiers
-      </button>
-      <button onclick="switchArchTab('hierarchy')" id="tab-hierarchy" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-slate-700 bg-slate-900 text-slate-300 transition cursor-pointer" data-i18n="tab_hierarchy">
-        ឋានានុក្រមឯកសារកំពូល ១០ កម្រិត
-      </button>
-    </div>
-
-    <!-- Tab Content Container -->
-    <div id="archTabContent" class="msn-glass rounded-3xl p-6 sm:p-8">
-      <!-- Populated dynamically by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- Section 4: National Governance Pyramid, Internal Control & Constitution -->
-<section id="governance" class="py-16 md:py-20 bg-[#091020] border-b border-slate-800/80">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mb-10">
-      <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-emerald-400">MSN-GOV-001 • MSN-GOV-002 • MSN-CONTROL-001</span>
-      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="gov_heading">អភិបាលកិច្ចថ្នាក់ជាតិ ប្រព័ន្ធតំណាង ៨ កម្រិត និងសវនកម្ម ៥ ស្រទាប់</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="gov_sub">
-        MSN ត្រូវគ្រប់គ្រងដោយប្រព័ន្ធ អភិបាលកិច្ច និងគោលការណ៍ មិនមែនពឹងផ្អែកលើបុគ្គលណាម្នាក់ឡើយ ជាមួយវិធាន Zero Tolerance ចំពោះការក្លែងបន្លំ និងទំនាស់ផលប្រយោជន៍។
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <!-- Left: 8-Level National Representation System -->
-      <div class="lg:col-span-6 msn-glass rounded-3xl p-6 space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-          <h3 class="font-bold text-white text-base" data-i18n="rep_title">រចនាសម្ព័ន្ធតំណាងពីមូលដ្ឋានដល់ថ្នាក់ជាតិ (MSN-GOV-002)</h3>
-          <span class="text-xs font-mono-code text-amber-400">8 LEVELS</span>
-        </div>
-
-        <div class="space-y-2.5" id="representationList">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-
-      <!-- Right: 8 Governance Bodies & 5-Level Audit Control -->
-      <div class="lg:col-span-6 space-y-6">
-        <!-- 8 Governance Bodies -->
-        <div class="msn-glass rounded-3xl p-6">
-          <h3 class="font-bold text-white text-base mb-3" data-i18n="bodies_title">ស្ថាប័នអភិបាលកិច្ចកំពូលទាំង ៨ (MSN-GOV-001)</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs" id="governanceBodiesGrid">
-            <!-- Populated by JS -->
-          </div>
-        </div>
-
-        <!-- 5-Level Control & Leadership Index Formula -->
-        <div class="msn-glass rounded-3xl p-6 space-y-4">
-          <h3 class="font-bold text-emerald-300 text-base" data-i18n="control_title">ប្រព័ន្ធត្រួតពិនិត្យផ្ទៃក្នុង និងសវនកម្ម ៥ ស្រទាប់ (MSN-CONTROL-001)</h3>
-          <div class="grid grid-cols-5 gap-2 text-center text-[11px]">
-            <div class="bg-[#0a1120] p-2.5 rounded-xl border border-slate-800">
-              <span class="block font-mono-code text-amber-400 font-bold">L1</span>
-              <span class="text-slate-300 mt-1 block" data-i18n="ctrl_1">សមាជិក</span>
-            </div>
-            <div class="bg-[#0a1120] p-2.5 rounded-xl border border-slate-800">
-              <span class="block font-mono-code text-amber-400 font-bold">L2</span>
-              <span class="text-slate-300 mt-1 block" data-i18n="ctrl_2">អ្នកគ្រប់គ្រង</span>
-            </div>
-            <div class="bg-[#0a1120] p-2.5 rounded-xl border border-slate-800">
-              <span class="block font-mono-code text-cyan-400 font-bold">L3</span>
-              <span class="text-slate-300 mt-1 block" data-i18n="ctrl_3">Software & AI</span>
-            </div>
-            <div class="bg-[#0a1120] p-2.5 rounded-xl border border-slate-800">
-              <span class="block font-mono-code text-emerald-400 font-bold">L4</span>
-              <span class="text-slate-300 mt-1 block" data-i18n="ctrl_4">សវនកម្មផ្ទៃក្នុង</span>
-            </div>
-            <div class="bg-[#0a1120] p-2.5 rounded-xl border border-slate-800">
-              <span class="block font-mono-code text-purple-400 font-bold">L5</span>
-              <span class="text-slate-300 mt-1 block" data-i18n="ctrl_5">សវនកម្មឯករាជ្យ</span>
-            </div>
-          </div>
-
-          <div class="bg-[#0a1120] p-3.5 rounded-xl border border-slate-800">
-            <p class="text-[11px] font-mono-code text-amber-300 mb-1">MSN-RANK-002 • AUTOMATIC LEADERSHIP PROMOTION INDEX</p>
-            <p class="text-xs text-slate-300">
-              Network (40%) + Financial (20%) + Knowledge (15%) + Social (10%) + Governance (10%) + Training (5%)
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Section 5: 5-Phase Strategic Roadmap (2026–2052) -->
-<section id="roadmap" class="py-16 md:py-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mb-10">
-      <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-amber-400">MSN-STR-00 • MSN-MBD-002</span>
-      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1" data-i18n="road_heading">ផែនទីបង្ហាញផ្លូវយុទ្ធសាស្ត្រ ៥ ដំណាក់កាល (២០២៦ – ២០៥២)</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2" data-i18n="road_sub">
-        ដំណើរវិវត្តន៍ជាប្រព័ន្ធពីការកសាងគ្រឹះស្ថាប័ន រហូតដល់ប្រព័ន្ធអេកូឡូស៊ីសេដ្ឋកិច្ចឌីជីថលថ្នាក់ជាតិដែលមានសមាជិកជាង ១០ លាននាក់។
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" id="roadmapCardsGrid">
-      <!-- Populated by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="border-t border-slate-800 bg-[#050912] py-10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-    <div>
-      <p class="font-bold text-white text-sm">MOHASEREI NETWORK (MSN) — ENTERPRISE SYSTEM</p>
-      <p class="mt-1" data-i18n="footer_quote">«មនុស្សគ្រប់រូបមានតម្លៃ។ រាល់ការចូលរួមមានតម្លៃ។» — រៀបចំដោយ ឯកឧត្តម មេណ្ឌ មុនី</p>
-    </div>
-    <div class="flex flex-wrap items-center gap-3">
-      <span class="font-mono-code text-amber-400/80">MSN-CHARTER-001 • V1.0</span>
-    </div>
-  </div>
-</footer>
-
-<!-- ================= END INDEX.HTML ================= -->
-
-<script>
-  /* ================= SCRIPT.JS ================= */
-  let currentLang = 'km';
-  let activeArchTab = 'layers8';
-
-  const i18n = {
-    km: {
-      nav_subtitle: 'ប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី MSN (2026–2052)',
-      nav_charter: 'ធម្មនុញ្ញ & រដ្ឋធម្មនុញ្ញ',
-      nav_ues: 'ម៉ាស៊ីនគណនា UES & HCV',
-      nav_coin: 'MSN Coin & ភាគលាភ',
-      nav_arch: 'ស្ថាបត្យកម្ម ៨ ស្រទាប់',
-      nav_gov: 'អភិបាលកិច្ច & សវនកម្ម',
-      nav_roadmap: 'ផែនទី 2026–2052',
-      hero_author: 'រៀបចំដោយ៖ ឯកឧត្តម មេណ្ឌ មុនី (H.E. Mend Mony) — អគ្គស្ថាបនិក និងជាប្រធានក្រុមប្រឹក្សាភិបាល',
-      hero_kicker: 'ឯកសារស្ថាបនាប្រព័ន្ធគ្រប់គ្រងទិន្នន័យមហាសិរី MSN',
-      hero_title: 'Moha Serey Enterprise System Update (2026–2052)',
-      hero_desc: 'ប្រព័ន្ធសេដ្ឋកិច្ចឌីជីថលផ្អែកលើការចូលរួម (Participation-Based Economic Ecosystem) ដែលបម្លែងរាល់សកម្មភាពរបស់មនុស្ស ធុរកិច្ច ចំណេះដឹង បណ្តាញ និងសង្គម ទៅជាតម្លៃសេដ្ឋកិច្ចពិតប្រាកដ ក្រោមអភិបាលកិច្ចស្ថាប័ន តម្លាភាព និងសវនកម្ម ១០០%។',
-      prin_1_tag: 'គោលការណ៍ទី ១',
-      prin_1_title: 'មនុស្សគ្រប់រូបមានតម្លៃសេដ្ឋកិច្ច',
-      prin_1_desc: 'សិស្ស កសិករ កម្មករ អាជីវករ អ្នកជំនាញ សុទ្ធតែអាចក្លាយជាម្ចាស់ទ្រព្យសកម្ម។',
-      prin_2_tag: 'គោលការណ៍ទី ២',
-      prin_2_title: 'MSN មិនលក់ការងារ',
-      prin_2_desc: 'បង្កើតឱកាសកសាងតម្លៃ បណ្តាញ ទ្រព្យសកម្ម និងកម្មសិទ្ធិសេដ្ឋកិច្ចរួម។',
-      prin_3_tag: 'គោលការណ៍ទី ៣',
-      prin_3_title: 'ការចូលរួមទាំងអស់មានតម្លៃ',
-      prin_3_desc: 'ទិញ លក់ សន្សំ វិនិយោគ បង្រៀន រៀន ស្ម័គ្រចិត្ត ត្រូវបម្លែងជា UES។',
-      cta_simulator: 'សាកល្បងគណនា UES & Human Capital',
-      cta_blueprint: 'មើលស្ថាបត្យកម្ម ៨ ស្រទាប់ (MSN-EAB-001)',
-      kpi_panel_title: 'ទិសដៅយុទ្ធសាស្ត្រជាតិ MSN ឆ្នាំ ២០៥២',
-      kpi_members: 'សមាជិកសរុប (Members)',
-      kpi_members_sub: 'គ្របដណ្តប់ទូទាំងប្រទេស',
-      kpi_partners: 'ដៃគូអាជីវកម្ម (Partners)',
-      kpi_partners_sub: 'ហាង កសិករ រោងចក្រ SMEs',
-      kpi_layers: 'ស្រទាប់ស្ថាបត្យកម្ម',
-      kpi_hierarchy: 'ឋានានុក្រមឯកសារកំពូល',
-      sim_heading: 'ម៉ាស៊ីនគណនាតម្លៃសេដ្ឋកិច្ចសកល (UES) និងមូលធនមនុស្ស (HCV)',
-      sim_sub: 'កែតម្រូវសកម្មភាពចូលរួមទាំង ៥ ប្រភេទខាងក្រោម ដើម្បីមើលការគណនាពិន្ទុស្វ័យប្រវត្តិ តំណែងដឹកនាំ (Career Rank) កម្រិតអត្ថប្រយោជន៍ និងចំណែកកម្មសិទ្ធិសេដ្ឋកិច្ចរបស់សមាជិក។',
-      cat_fin: '១. ហិរញ្ញធន & ធនអាជីវកម្ម (Financial & Business Activity)',
-      lbl_savings: 'ប្រាក់សន្សំ ($1 = 1 pt)',
-      lbl_purchase: 'ការទិញទំនិញ ($1 = 1 pt)',
-      lbl_revenue: 'ការលក់/អាជីវកម្ម ($1 = 2 pts)',
-      lbl_invest: 'ការវិនិយោគ ($1 = 3 pts)',
-      cat_know: '២. ធនចំណេះដឹង (Knowledge & MSN Academy)',
-      lbl_train: 'រៀនវគ្គបណ្តុះបណ្តាល (20pts/hr)',
-      lbl_teach: 'បង្រៀន/ណែនាំ (30pts/hr)',
-      lbl_content: 'បង្កើតមាតិកាចំណេះដឹង (50pts)',
-      cat_netsoc: '៣. ធនបណ្តាញ & ធនសង្គម (Network & Social Capital)',
-      lbl_newmem: 'ណែនាំសមាជិកថ្មី (100pts/នាក់)',
-      lbl_actmem: 'សមាជិកសកម្មក្នុងក្រុម (50pts/នាក់)',
-      lbl_leadact: 'ដឹកនាំសកម្មភាព/គម្រោង (200pts)',
-      lbl_csr: 'ការងារស្ម័គ្រចិត្ត & CSR (100pts)',
-      passport_title: 'លិខិតឆ្លងដែនសេដ្ឋកិច្ចសមាជិក',
-      ues_total_lbl: 'ពិន្ទុសេដ្ឋកិច្ចសកល (Universal Economic Score)',
-      rank_lbl: 'តំណែងស្វ័យប្រវត្តិ៖',
-      next_rank_lbl: 'វឌ្ឍនភាពទៅកាន់តំណែងបន្ទាប់៖',
-      hcv_lbl: 'តម្លៃមូលធនមនុស្ស (HCV)',
-      reward_share_lbl: 'ចំណែកភាគលាភប៉ាន់ស្មាន',
-      reward_pool_note: 'ពី Reward Pool $100,000',
-      benefits_unlocked_lbl: 'សិទ្ធិ និងអត្ថប្រយោជន៍ដែលទទួលបាន (MSN-BEN-001):',
-      coin_heading: 'ម៉ាស៊ីនគណនាតម្លៃកាក់ MSN ថាមវន្ត និងការបែងចែកផលចំណេញ',
-      coin_sub: 'តម្លៃកាក់ MSN មិនកំណត់ដោយបុគ្គលឬ Admin ទេ ប៉ុន្តែគណនាដោយស្វ័យប្រវត្តិពីទ្រព្យសកម្មបម្រុងពិតប្រាកដ ÷ ចំនួនកាក់ផ្គត់ផ្គង់សរុប។',
-      coin_calc_title: 'ការគណនាតម្លៃ MSN Coin ផ្ទាល់ (Real-Time Valuation)',
-      lbl_asset_res: 'ទ្រព្យសកម្មបម្រុង (Asset Reserve)',
-      lbl_cash_res: 'សាច់ប្រាក់បម្រុង (Cash Reserve)',
-      lbl_inv_res: 'មូលនិធិវិនិយោគបម្រុង (Investment Reserve)',
-      lbl_coin_supply: 'ការផ្គត់ផ្គង់កាក់សរុប (Total Coin Supply)',
-      coin_price_lbl: 'តម្លៃ 1 MSN Coin បច្ចុប្បន្ន',
-      total_res_lbl: 'ទ្រព្យបម្រុងសរុប៖',
-      alloc_title: 'គោលនយោបាយបែងចែកប្រាក់ចំណេញសុទ្ធ (Value Allocation)',
-      alloc_desc: 'រាល់ប្រាក់ចំណេញសុទ្ធដែលប្រព័ន្ធបង្កើតបាន ត្រូវបានបែងចែកដោយស្វ័យប្រវត្តិតាមរូបមន្តតម្លាភាព ៦ ចំណែក៖',
-      alloc_1: 'មូលនិធិពង្រីកអាជីវកម្ម',
-      alloc_2: 'មូលនិធិចែកជូនសមាជិក',
-      alloc_3: 'មូលនិធិបម្រុងយុទ្ធសាស្ត្រ',
-      alloc_4: 'មូលនិធិបច្ចេកវិទ្យា',
-      alloc_5: 'មូលនិធិអភិវឌ្ឍធនធានមនុស្ស',
-      alloc_6: 'មូលនិធិអភិវឌ្ឍសហគមន៍',
-      sec_agri: 'កសិកម្ម & កសិ-ឧស្សាហកម្ម',
-      sec_ret: 'ពាណិជ្ជកម្ម & ដឹកជញ្ជូន',
-      sec_mfg: 'ផលិតកម្ម & កែច្នៃ',
-      sec_tech: 'បច្ចេកវិទ្យា & FinTech',
-      sec_re: 'អចលនទ្រព្យ & ថាមពលបៃតង',
-      arch_heading: 'ស្ថាបត្យកម្មសហគ្រាស ៨ ស្រទាប់ និងប្រព័ន្ធកម្មវិធីកំពូល',
-      arch_sub: 'គ្មាន Module ណាមួយត្រូវបានអនុញ្ញាតឱ្យអភិវឌ្ឍ ឬដាក់ឱ្យប្រើប្រាស់ឡើយ ប្រសិនបើមិនស្របតាម MSN Enterprise Blueprint និង MSN Master Charter។',
-      tab_8layers: 'ស្ថាបត្យកម្ម ៨ ស្រទាប់ (8 Enterprise Layers)',
-      tab_superapp: 'MSN Super App & 6 Application Tiers',
-      tab_hierarchy: 'ឋានានុក្រមឯកសារកំពូល ១០ កម្រិត',
-      gov_heading: 'អភិបាលកិច្ចថ្នាក់ជាតិ ប្រព័ន្ធតំណាង ៨ កម្រិត និងសវនកម្ម ៥ ស្រទាប់',
-      gov_sub: 'MSN ត្រូវគ្រប់គ្រងដោយប្រព័ន្ធ អភិបាលកិច្ច និងគោលការណ៍ មិនមែនពឹងផ្អែកលើបុគ្គលណាម្នាក់ឡើយ ជាមួយវិធាន Zero Tolerance ចំពោះការក្លែងបន្លំ និងទំនាស់ផលប្រយោជន៍។',
-      rep_title: 'រចនាសម្ព័ន្ធតំណាងពីមូលដ្ឋានដល់ថ្នាក់ជាតិ (MSN-GOV-002)',
-      bodies_title: 'ស្ថាប័នអភិបាលកិច្ចកំពូលទាំង ៨ (MSN-GOV-001)',
-      control_title: 'ប្រព័ន្ធត្រួតពិនិត្យផ្ទៃក្នុង និងសវនកម្ម ៥ ស្រទាប់ (MSN-CONTROL-001)',
-      ctrl_1: 'សមាជិក',
-      ctrl_2: 'អ្នកគ្រប់គ្រង',
-      ctrl_3: 'Software & AI',
-      ctrl_4: 'សវនកម្មផ្ទៃក្នុង',
-      ctrl_5: 'សវនកម្មឯករាជ្យ',
-      road_heading: 'ផែនទីបង្ហាញផ្លូវយុទ្ធសាស្ត្រ ៥ ដំណាក់កាល (២០២៦ – ២០៥២)',
-      road_sub: 'ដំណើរវិវត្តន៍ជាប្រព័ន្ធពីការកសាងគ្រឹះស្ថាប័ន រហូតដល់ប្រព័ន្ធអេកូឡូស៊ីសេដ្ឋកិច្ចឌីជីថលថ្នាក់ជាតិដែលមានសមាជិកជាង ១០ លាននាក់។',
-      footer_quote: '«មនុស្សគ្រប់រូបមានតម្លៃ។ រាល់ការចូលរួមមានតម្លៃ។» — រៀបចំដោយ ឯកឧត្តម មេណ្ឌ មុនី'
-    },
-    en: {
-      nav_subtitle: 'Moha Serey Enterprise System (2026–2052)',
-      nav_charter: 'Charter & Constitution',
-      nav_ues: 'UES & HCV Engine',
-      nav_coin: 'MSN Coin & Profit Split',
-      nav_arch: '8-Layer Architecture',
-      nav_gov: 'Governance & Audit',
-      nav_roadmap: '2026–2052 Roadmap',
-      hero_author: 'Prepared by: H.E. Mend Mony — Founder & Chairman of the Board of Directors',
-      hero_kicker: 'MOHASEREI NETWORK (MSN) ENTERPRISE SYSTEM SPECIFICATION',
-      hero_title: 'Moha Serey Enterprise System Update (2026–2052)',
-      hero_desc: 'A Participation-Based Digital Economic Ecosystem converting human, business, knowledge, network, and social contributions into verifiable economic ownership under 100% institutional governance, transparency, and auditability.',
-      prin_1_tag: 'PRINCIPLE 01',
-      prin_1_title: 'Every Person Has Economic Value',
-      prin_1_desc: 'Students, farmers, workers, merchants, and specialists can all become asset owners.',
-      prin_2_tag: 'PRINCIPLE 02',
-      prin_2_title: 'MSN Does Not Sell Jobs',
-      prin_2_desc: 'Creates opportunities to build value, networks, assets, and shared economic ownership.',
-      prin_3_tag: 'PRINCIPLE 03',
-      prin_3_title: 'All Participation Has Value',
-      prin_3_desc: 'Buying, selling, saving, investing, teaching, learning, and volunteering convert into UES.',
-      cta_simulator: 'Simulate UES & Human Capital',
-      cta_blueprint: 'Explore 8-Layer Blueprint (MSN-EAB-001)',
-      kpi_panel_title: 'MSN National Strategic Targets by 2052',
-      kpi_members: 'Total Members',
-      kpi_members_sub: 'Nationwide Coverage',
-      kpi_partners: 'Business Partners',
-      kpi_partners_sub: 'Merchants, Farmers, SMEs',
-      kpi_layers: 'Architecture Layers',
-      kpi_hierarchy: 'Supreme Doc Hierarchy',
-      sim_heading: 'Universal Economic Score (UES) & Human Capital Value (HCV) Simulator',
-      sim_sub: 'Adjust the 5 participation capitals below to compute real-time UES, automatic Career Rank promotion, unlocked Benefits Tier, and cooperative reward share.',
-      cat_fin: '1. Financial & Business Capital Activity',
-      lbl_savings: 'Savings ($1 = 1 pt)',
-      lbl_purchase: 'Purchases ($1 = 1 pt)',
-      lbl_revenue: 'Sales / Business ($1 = 2 pts)',
-      lbl_invest: 'Investment ($1 = 3 pts)',
-      cat_know: '2. Knowledge Capital & MSN Academy',
-      lbl_train: 'Training Attendance (20pts/hr)',
-      lbl_teach: 'Teaching / Mentoring (30pts/hr)',
-      lbl_content: 'Knowledge Content Creation (50pts)',
-      cat_netsoc: '3. Network & Social Capital Activity',
-      lbl_newmem: 'New Member Referral (100pts)',
-      lbl_actmem: 'Active Team Members (50pts)',
-      lbl_leadact: 'Lead Project / Activity (200pts)',
-      lbl_csr: 'Volunteering & CSR Projects (100pts)',
-      passport_title: 'Member Digital Economic Passport',
-      ues_total_lbl: 'Universal Economic Score (UES)',
-      rank_lbl: 'Automatic Rank:',
-      next_rank_lbl: 'Progress to Next Rank:',
-      hcv_lbl: 'Human Capital Value (HCV)',
-      reward_share_lbl: 'Est. Reward Pool Share',
-      reward_pool_note: 'From $100,000 Pool',
-      benefits_unlocked_lbl: 'Unlocked Membership Benefits (MSN-BEN-001):',
-      coin_heading: 'Dynamic MSN Coin Valuation & Net Value Allocation Engine',
-      coin_sub: 'MSN Coin value is never fixed by an individual or Admin; it is algorithmically backed by verified Asset, Cash, and Investment Reserves divided by Total Coin Supply.',
-      coin_calc_title: 'Real-Time MSN Coin Valuation Calculator',
-      lbl_asset_res: 'Asset Reserve',
-      lbl_cash_res: 'Cash Reserve',
-      lbl_inv_res: 'Investment Reserve',
-      lbl_coin_supply: 'Total Coin Supply',
-      coin_price_lbl: 'Current 1 MSN Coin Valuation',
-      total_res_lbl: 'Total Backing Reserves:',
-      alloc_title: 'Net Value Allocation Policy (100% Net Profit)',
-      alloc_desc: 'All net value generated by the ecosystem is automatically allocated across 6 transparent funds:',
-      alloc_1: 'Business Expansion Fund',
-      alloc_2: 'Member Distribution Fund',
-      alloc_3: 'Strategic Reserve Fund',
-      alloc_4: 'Technology Fund',
-      alloc_5: 'Human Capital Fund',
-      alloc_6: 'Community Development Fund',
-      sec_agri: 'Agriculture & Agro-Industry',
-      sec_ret: 'Commerce & Logistics',
-      sec_mfg: 'Manufacturing & Processing',
-      sec_tech: 'Technology & FinTech',
-      sec_re: 'Real Estate & Green Energy',
-      arch_heading: '8-Layer Enterprise Architecture & Master System Blueprint',
-      arch_sub: 'No software module may be developed, procured, or deployed unless strictly compliant with MSN Enterprise Blueprint (MSN-EAB-001) and MSN Master Charter.',
-      tab_8layers: '8 Enterprise Layers (MSN-EAB-001)',
-      tab_superapp: 'MSN Super App & 6 Application Tiers',
-      tab_hierarchy: '10-Level Supreme Document Hierarchy',
-      gov_heading: 'National Governance, 8-Level Representation & 5-Layer Audit Control',
-      gov_sub: 'MSN is governed by institutional systems and rules rather than individuals, enforced by Zero Tolerance policies against fraud and conflicts of interest.',
-      rep_title: 'Grassroots-to-National Representative Ladder (MSN-GOV-002)',
-      bodies_title: '8 Supreme Governance Bodies (MSN-GOV-001)',
-      control_title: '5-Layer Internal Control & Audit Framework (MSN-CONTROL-001)',
-      ctrl_1: 'Self Control',
-      ctrl_2: 'Management',
-      ctrl_3: 'Software & AI',
-      ctrl_4: 'Internal Audit',
-      ctrl_5: 'Independent Audit',
-      road_heading: '5-Phase Strategic Roadmap (2026 – 2052)',
-      road_sub: 'Systematic evolution from institutional foundation to a nationwide digital cooperative economic infrastructure exceeding 10,000,000 members.',
-      footer_quote: '"Every person has value. Every participation has value." — Prepared by H.E. Mend Mony'
-    }
-  };
-// ... existing code ... -->
-    recalculateEcosystem();
-    renderArchTab();
-    renderGovernanceAndRoadmap();
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    recalculateEcosystem();
-    recalculateCoin();
-    renderArchTab();
-    renderGovernanceAndRoadmap();
-  });
-  /* ================= END SCRIPT.JS ================= */
-</script>
+        // Chart.js Setup
+        const ctx = document.getElementById('participationChart').getContext('2d');
+        const participationChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    '១. កម្លាំងពលកម្ម + ពេលវេលា',
+                    '២. ចំណេះជំនាញ',
+                    '៣. ធនធាន (ទ្រព្យ/ហិរញ្ញវត្ថុ)',
+                    '៤. បណ្ដាញទំនាក់ទំនង',
+                    '៥. ម្ចាស់អាជីវកម្ម'
+                ],
+                datasets: [{
+                    data: [450, 250, 150, 200, 200],
+                    backgroundColor: [
+                        '#ef4444',
+                        '#f59e0b',
+                        '#3b82f6',
+                        '#10b981',
+                        '#8b5cf6'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Kantumruy Pro',
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
